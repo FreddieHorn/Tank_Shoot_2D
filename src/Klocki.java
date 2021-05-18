@@ -19,7 +19,10 @@ public class Klocki {
         300,300,300,300,350,350,350,350,400,400,400,400,450,
         450,450,450,450,450,500,500,500,500,500,500,550,550,
         550,550};
-
+    
+    public static int solidBricksXPos[] = {150,350,150,500,450,300,600,400,350,200,0,200,500};
+	
+    public static int solidBricksYPos[] = {0,0,50,100,150,200,200,250,300,350,400,400,450};
 
     private Vector<Integer> klocki_on = new Vector<>();
 
@@ -38,5 +41,7 @@ public class Klocki {
     public Vector<Integer> getklocki_on() {return klocki_on;}
     public static int[] getklockiX() {return klockiXPos;}
     public static int[] getklockiY() {return klockiYPos;}
+    public int[] getmocneklockiX() {return solidBricksXPos;}
+    public int[] getmocneklockiY() {return solidBricksYPos;}
 
 }
