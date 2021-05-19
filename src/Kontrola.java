@@ -98,7 +98,7 @@ public class Kontrola extends JFrame {
     }
     Kontrola(){
         super("Tank_Shoot 2D");
-        setBounds(40,40,800,600);
+        setBounds(10,10,800,600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBackground(Color.black);
         setResizable(false);
