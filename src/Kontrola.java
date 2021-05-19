@@ -29,6 +29,7 @@ public class Kontrola extends JFrame {
 
         if(klawisze[0]) 
         {
+            tank1.setkierunek(2);
             if(!mur.checkSolidCollision(tank1.getX(), tank1.getY()-1) && !gra.CheckTankCollision(tank1.getX(), tank1.getY()-1, tank2.getX(), tank2.getY()))
             {
             mur.checkCollision(tank1.getX(), tank1.getY()-1);
@@ -37,6 +38,7 @@ public class Kontrola extends JFrame {
         }
         if(klawisze[1])
         {
+            tank1.setkierunek(3);
             if(!mur.checkSolidCollision(tank1.getX(), tank1.getY()+1) && !gra.CheckTankCollision(tank1.getX(), tank1.getY()+1, tank2.getX(), tank2.getY()))
             {
             mur.checkCollision(tank1.getX(), tank1.getY()+1);
@@ -45,6 +47,7 @@ public class Kontrola extends JFrame {
         }
         if(klawisze[2])
         {
+            tank1.setkierunek(1);
             if(!mur.checkSolidCollision(tank1.getX()-1, tank1.getY()) && !gra.CheckTankCollision(tank1.getX()-1, tank1.getY(), tank2.getX(), tank2.getY()))
             {
             mur.checkCollision(tank1.getX()-1, tank1.getY());
@@ -53,6 +56,7 @@ public class Kontrola extends JFrame {
         }
         if(klawisze[3])
         {
+            tank1.setkierunek(0);
             if(!mur.checkSolidCollision(tank1.getX()+1, tank1.getY()) && !gra.CheckTankCollision(tank1.getX()+1, tank1.getY(), tank2.getX(), tank2.getY()))
             {
             mur.checkCollision(tank1.getX()+1, tank1.getY());
@@ -62,6 +66,7 @@ public class Kontrola extends JFrame {
         
         if(klawisze[4]) 
         {
+            tank2.setkierunek(2);
             if(!mur.checkSolidCollision(tank2.getX(), tank2.getY()-1) && !gra.CheckTankCollision(tank1.getX(), tank1.getY(), tank2.getX(), tank2.getY()-1))
             {
             mur.checkCollision(tank2.getX(), tank2.getY()-1);
@@ -70,6 +75,7 @@ public class Kontrola extends JFrame {
         }
         if(klawisze[5])
         {
+            tank2.setkierunek(3);
             if(!mur.checkSolidCollision(tank2.getX(), tank2.getY()+1) && !gra.CheckTankCollision(tank1.getX(), tank1.getY(), tank2.getX(), tank2.getY()+1))
             {
             mur.checkCollision(tank2.getX(), tank2.getY()+1);
@@ -78,6 +84,7 @@ public class Kontrola extends JFrame {
         }
         if(klawisze[6])
         {
+            tank2.setkierunek(1);
             if(!mur.checkSolidCollision(tank2.getX()-1, tank2.getY()) && !gra.CheckTankCollision(tank1.getX(), tank1.getY(), tank2.getX()-1, tank2.getY()))
             {
             mur.checkCollision(tank2.getX()-1, tank2.getY());
@@ -86,6 +93,7 @@ public class Kontrola extends JFrame {
         }
         if(klawisze[7])
         {
+            tank2.setkierunek(0);
             if(!mur.checkSolidCollision(tank2.getX()+1, tank2.getY()) && !gra.CheckTankCollision(tank1.getX(), tank1.getY(), tank2.getX()+1, tank2.getY()))
             {
             mur.checkCollision(tank2.getX()+1, tank2.getY());
@@ -98,7 +106,7 @@ public class Kontrola extends JFrame {
     }
     Kontrola(){
         super("Tank_Shoot 2D");
-        setBounds(10,10,800,600);
+        setBounds(40,40,800,600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBackground(Color.black);
         setResizable(false);
