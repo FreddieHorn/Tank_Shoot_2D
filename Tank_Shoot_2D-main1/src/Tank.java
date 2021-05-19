@@ -41,7 +41,7 @@ public class Tank {
     {
         
         this.y = y+1;
-        if(y>600) y = 600;
+        if(y>550) y = 550;
         this.kierunek=3;
     }
     public int getX() {return x;}
