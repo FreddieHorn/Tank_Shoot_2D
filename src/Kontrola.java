@@ -23,62 +23,62 @@ public class Kontrola extends JFrame {
     private boolean klawisze[];
     private Tank tank1;
     private Tank tank2;
-    
+    private Gameplay gra;
     class Zadanie extends TimerTask{
         public void run(){
 
         if(klawisze[0]) 
         {
-            if(!mur.checkSolidCollision(tank1.getX(), tank1.getY()-1) && !mur.checkCollision(tank1.getX(), tank1.getY()-1))
+            if(!mur.checkSolidCollision(tank1.getX(), tank1.getY()-1) && !mur.checkCollision(tank1.getX(), tank1.getY()-1) && !gra.CheckTankCollision(tank1.getX(), tank1.getY()-1, tank2.getX(), tank2.getY()))
             {
             tank1.ruchGora(); 
             }
         }
         if(klawisze[1])
         {
-            if(!mur.checkSolidCollision(tank1.getX(), tank1.getY()+1) && !mur.checkCollision(tank1.getX(), tank1.getY()+1))
+            if(!mur.checkSolidCollision(tank1.getX(), tank1.getY()+1) && !mur.checkCollision(tank1.getX(), tank1.getY()+1) && !gra.CheckTankCollision(tank1.getX(), tank1.getY()+1, tank2.getX(), tank2.getY()))
             {
             tank1.ruchDol();
             }
         }
         if(klawisze[2])
         {
-            if(!mur.checkSolidCollision(tank1.getX()-1, tank1.getY()) && !mur.checkCollision(tank1.getX()-1, tank1.getY()))
+            if(!mur.checkSolidCollision(tank1.getX()-1, tank1.getY()) && !mur.checkCollision(tank1.getX()-1, tank1.getY()) && !gra.CheckTankCollision(tank1.getX()-1, tank1.getY(), tank2.getX(), tank2.getY()))
             {
             tank1.ruchLewo();
             }
         }
         if(klawisze[3])
         {
-            if(!mur.checkSolidCollision(tank1.getX()+1, tank1.getY()) && !mur.checkCollision(tank1.getX()+1, tank1.getY()))
+            if(!mur.checkSolidCollision(tank1.getX()+1, tank1.getY()) && !mur.checkCollision(tank1.getX()+1, tank1.getY()) && !gra.CheckTankCollision(tank1.getX()+1, tank1.getY(), tank2.getX(), tank2.getY()))
             {
             tank1.ruchPrawo();
             }
         }
         if(klawisze[4]) 
         {
-            if(!mur.checkSolidCollision(tank2.getX(), tank2.getY()-1) && !mur.checkCollision(tank2.getX(), tank2.getY()-1))
+            if(!mur.checkSolidCollision(tank2.getX(), tank2.getY()-1) && !mur.checkCollision(tank2.getX(), tank2.getY()-1) && !gra.CheckTankCollision(tank1.getX(), tank1.getY(), tank2.getX(), tank2.getY()-1))
             {
             tank2.ruchGora(); 
             }
         }
         if(klawisze[5])
         {
-            if(!mur.checkSolidCollision(tank2.getX(), tank2.getY()+1) && !mur.checkCollision(tank2.getX(), tank2.getY()+1))
+            if(!mur.checkSolidCollision(tank2.getX(), tank2.getY()+1) && !mur.checkCollision(tank2.getX(), tank2.getY()+1) && !gra.CheckTankCollision(tank1.getX(), tank1.getY(), tank2.getX(), tank2.getY()+1))
             {
             tank2.ruchDol();
             }
         }
         if(klawisze[6])
         {
-            if(!mur.checkSolidCollision(tank2.getX()-1, tank2.getY()) && !mur.checkCollision(tank2.getX()-1, tank2.getY()))
+            if(!mur.checkSolidCollision(tank2.getX()-1, tank2.getY()) && !mur.checkCollision(tank2.getX()-1, tank2.getY()) && !gra.CheckTankCollision(tank1.getX(), tank1.getY(), tank2.getX()-1, tank2.getY()))
             {
             tank2.ruchLewo();
             }
         }
         if(klawisze[7])
         {
-            if(!mur.checkSolidCollision(tank2.getX()+1, tank2.getY()) && !mur.checkCollision(tank2.getX()+1, tank2.getY()))
+            if(!mur.checkSolidCollision(tank2.getX()+1, tank2.getY()) && !mur.checkCollision(tank2.getX()+1, tank2.getY()) && !gra.CheckTankCollision(tank1.getX(), tank1.getY(), tank2.getX()+1, tank2.getY()))
             {
             tank2.ruchPrawo();
             }
@@ -103,13 +103,14 @@ public class Kontrola extends JFrame {
         tank_left = new ImageIcon("obrazki/tank1_left.png").getImage();
         tank_right = new ImageIcon("obrazki/tank1_right.png").getImage();
         mur = new Klocki();
-        tank1 = new Tank(100,150);
-        tank2 = new Tank(50,150);
+        tank1 = new Tank(200,550);
+        tank2 = new Tank(400,550);
         klawisze = new boolean[8];
+        gra = new Gameplay();
     
     
         zegar = new Timer();
-        zegar.scheduleAtFixedRate(new Zadanie(),0,1);
+        zegar.scheduleAtFixedRate(new Zadanie(),0,10);
 
         this.addKeyListener(new KeyListener(){
 

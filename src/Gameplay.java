@@ -1,23 +1,16 @@
+import java.awt.Rectangle;
 public class Gameplay {
-    public void jazda(Tank tank,Boolean klawisze[]){
 
+    public boolean CheckTankCollision(int x1, int y1, int x2, int y2){
 
-
-        if(klawisze[0]) 
-        {
-            tank.ruchGora();
-        }
-        else if(klawisze[1])
-        {
-            tank.ruchDol();
-        }
-        else if(klawisze[2])
-        {
-            tank.ruchLewo();
-        }
-        else if(klawisze[3])
-        {
-            tank.ruchPrawo();
-        }
+    boolean collided = false;
+	
+    if(new Rectangle(x1+5, y1+5, 40, 40).intersects(new Rectangle(x2+5, y2+5, 40, 40)))
+    {		
+        collided = true;
     }
+
+	return collided;
+	}
+
 }
