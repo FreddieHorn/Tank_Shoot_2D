@@ -4,16 +4,39 @@ import java.awt.*;
 
 
 public class Tank {
-    public int x;
-    public int y;
-    public int kierunek;
+    private int x;
+    private int y;
+    private int kierunek;
+    private int health;
+    private int score;
+
 
     public Tank(int given_x, int given_y)
     {
         this.x = given_x;
         this.y = given_y;
         this.kierunek = 2;
+        this.health = 5;
+        this.score = 0;
     }
+
+    public void setHealth(int h)
+    {
+        if(this.health>0&&this.health<5)
+            this.health += h; 
+    }
+
+    public void up_score(int h)
+    {
+        this.score+=1; 
+    }
+
+    public int getHealth()
+    {
+        return this.health;
+    }
+
+
     public void ruchPrawo()
     {
         

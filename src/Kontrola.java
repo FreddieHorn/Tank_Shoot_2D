@@ -177,7 +177,18 @@ public class Kontrola extends JFrame {
         Graphics2D g2d = (Graphics2D)bstrategy.getDrawGraphics();
 
         g2d.drawImage(tlo, 0, 0, null);
-        
+
+        //rysowanie HUDu
+        g2d.setColor(Color.DARK_GRAY);
+        g2d.fillRect(660, 0, 140, 600);
+
+        g2d.setColor(Color.WHITE);
+        g2d.setFont(new Font("Arial", Font.BOLD, 10));
+        g2d.drawString("Zdrowie gracza 1: " + String.valueOf(tank1.getHealth()), 670, 50);
+        g2d.drawString("Zdrowie gracza 2: " + String.valueOf(tank1.getHealth()), 670, 80);
+
+
+        //rysowanie mapy
         for (int i=0;i<mur.getklocki_on().size();i++)
         {   
             if(mur.getklocki_on().get(i)==1)
