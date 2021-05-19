@@ -4,8 +4,8 @@ import java.awt.*;
 
 
 public class Tank {
-    private int x;
-    private int y;
+    public int x;
+    public int y;
     public int kierunek;
 
     public Tank(int given_x, int given_y)
@@ -14,18 +14,11 @@ public class Tank {
         this.y = given_y;
         this.kierunek = 2;
     }
-
-    public int getX() {return x;}
-    public int getY() {return y;}
-    public int getkierunek() {return kierunek;}
-    public Rectangle getwymiary(){
-        return new Rectangle(this.x,this.y,50,50);
-    }
     public void ruchPrawo()
     {
         
         this.x = x+1;
-        if(x>550) x = 550;
+        if(x>600) x = 600;
         this.kierunek = 0;
     }
       public void ruchLewo()
@@ -47,9 +40,14 @@ public class Tank {
     public void ruchDol()
     {
         
-        this.x = x+1;
-        if(x>550) x = 550;
+        this.y = y+1;
+        if(y>550) y = 550;
         this.kierunek=3;
     }
-
+    public int getX() {return x;}
+    public int getY() {return y;}
+    public int getkierunek() {return kierunek;}
+    public Rectangle getwymiary(){
+        return new Rectangle(this.x,this.y,50,50);
+    }
 }

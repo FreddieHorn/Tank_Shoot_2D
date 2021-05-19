@@ -1,9 +1,4 @@
 public class Gameplay {
-    
-
-
-
-
     public void jazda(Tank tank,Boolean klawisze[]){
 
 

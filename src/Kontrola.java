@@ -22,15 +22,49 @@ public class Kontrola extends JFrame {
     private Timer zegar; 
     private boolean klawisze[];
     private Tank tank1;
+    private Tank tank2;
     
     class Zadanie extends TimerTask{
         public void run(){
+
+        if(klawisze[0]) 
+        {
+            tank1.ruchGora();
+        }
+        if(klawisze[1])
+        {
+            tank1.ruchDol();
+        }
+        if(klawisze[2])
+        {
+            tank1.ruchLewo();
+        }
+        if(klawisze[3])
+        {
+            tank1.ruchPrawo();
+        }
+        if(klawisze[4]) 
+        {
+            tank2.ruchGora();
+        }
+        if(klawisze[5])
+        {
+            tank2.ruchDol();
+        }
+        if(klawisze[6])
+        {
+            tank2.ruchLewo();
+        }
+        if(klawisze[7])
+        {
+            tank2.ruchPrawo();
+        }
             repaint();
         }
     }
     Kontrola(){
         super("Tank_Shoot 2D");
-        setBounds(0,0,800,600);
+        setBounds(40,40,800,600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBackground(Color.black);
         setResizable(false);
@@ -40,12 +74,14 @@ public class Kontrola extends JFrame {
         klocek = new ImageIcon("obrazki/klocek.jpg").getImage();
         tlo = new ImageIcon("obrazki/tlo.jpg").getImage();
         klocek_mocny = new ImageIcon("obrazki/klocek_mocny.jpg").getImage();
-        tank_up = new ImageIcon("obrazki/tank_up.jpg").getImage();
-        tank_down = new ImageIcon("obrazki/tank_down.jpg").getImage();
-        tank_left = new ImageIcon("obrazki/tank_left.jpg").getImage();
-        tank_right = new ImageIcon("obrazki/tank_right.jpg").getImage();
+        tank_up = new ImageIcon("obrazki/tank1_up.png").getImage();
+        tank_down = new ImageIcon("obrazki/tank1_down.png").getImage();
+        tank_left = new ImageIcon("obrazki/tank1_left.png").getImage();
+        tank_right = new ImageIcon("obrazki/tank1_right.png").getImage();
         mur = new Klocki();
         tank1 = new Tank(100,150);
+        tank2 = new Tank(50,150);
+        klawisze = new boolean[8];
     
     
         zegar = new Timer();
@@ -56,10 +92,30 @@ public class Kontrola extends JFrame {
             public void keyPressed(KeyEvent e){
                
                 switch(e.getKeyCode()){
-                    case KeyEvent.VK_UP:      klawisze[0] = true; break;
-                    case KeyEvent.VK_DOWN:    klawisze[1] = true; break;
-                    case KeyEvent.VK_LEFT:    klawisze[2] = true; break;
-                    case KeyEvent.VK_RIGHT:   klawisze[3] = true; break;
+                    case KeyEvent.VK_UP:      klawisze[0] = true;
+                    //tank1.ruchGora();
+                    break;
+                    case KeyEvent.VK_DOWN:    klawisze[1] = true;
+                    //tank1.ruchDol();
+                    break;
+                    case KeyEvent.VK_LEFT:    klawisze[2] = true;
+                    //tank1.ruchLewo();
+                    break;
+                    case KeyEvent.VK_RIGHT:   klawisze[3] = true;
+                    //tank1.ruchPrawo();
+                    break;
+                    case KeyEvent.VK_W:      klawisze[4] = true;
+                    //tank1.ruchGora();
+                    break;
+                    case KeyEvent.VK_S:    klawisze[5] = true;
+                    //tank1.ruchDol();
+                    break;
+                    case KeyEvent.VK_A:    klawisze[6] = true;
+                    //tank1.ruchLewo();
+                    break;
+                    case KeyEvent.VK_D:   klawisze[7] = true;
+                    //tank1.ruchPrawo();
+                    break;
                 }
             }
 
@@ -69,6 +125,10 @@ public class Kontrola extends JFrame {
                     case KeyEvent.VK_DOWN:    klawisze[1] = false; break;
                     case KeyEvent.VK_LEFT:    klawisze[2] = false; break;
                     case KeyEvent.VK_RIGHT:   klawisze[3] = false; break;
+                    case KeyEvent.VK_W:      klawisze[4] = false; break;
+                    case KeyEvent.VK_S:    klawisze[5] = false; break;
+                    case KeyEvent.VK_A:    klawisze[6] = false; break;
+                    case KeyEvent.VK_D:   klawisze[7] = false; break;
                 }
             }
 
@@ -109,8 +169,8 @@ public class Kontrola extends JFrame {
         }
 
         //rysowanie statku
-
-        /*if(tank1.getkierunek()==0)
+        
+        if(tank1.getkierunek()==0)
         {
             g2d.drawImage(tank_right, tank1.getX(),tank1.getY(),null);
         }
@@ -125,8 +185,31 @@ public class Kontrola extends JFrame {
         else if(tank1.getkierunek()==3)
         {
             g2d.drawImage(tank_down, tank1.getX(),tank1.getY(),null);
-        }*/
-        g2d.drawImage(tank_up,tank1.getX(),tank1.getY(),null);
+        }
+        if(tank2.getkierunek()==0)
+        {
+            g2d.drawImage(tank_right, tank2.getX(),tank2.getY(),null);
+        }
+        else if(tank2.getkierunek()==1)
+        {
+            g2d.drawImage(tank_left, tank2.getX(),tank2.getY(),null);
+        }
+        else if(tank2.getkierunek()==2)
+        {
+            g2d.drawImage(tank_up, tank2.getX(),tank2.getY(),null);
+        }
+        else if(tank2.getkierunek()==3)
+        {
+            g2d.drawImage(tank_down, tank2.getX(),tank2.getY(),null);
+        }
+        g2d.setColor(Color.white);
+        //g2d.drawString((String.valueOf(tank1.getkierunek())), 120, 120);
+        //g2d.drawImage(tank_up,tank1.getX(),tank1.getY(),null);
+        g2d.drawString((String.valueOf(tank1.getX())), 70, 120);
+        g2d.drawString((String.valueOf(tank1.getY())), 90, 120);
+        g2d.drawString((String.valueOf(tank2.getX())), 70, 140);
+        g2d.drawString((String.valueOf(tank2.getY())), 90, 140);
+        //g2d.drawImage(tank_up,tank1.getX(),tank1.getY(),null);
         g2d.setColor(Color.white);
         bstrategy.show();
     }

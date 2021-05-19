@@ -39,8 +39,8 @@ public class Klocki {
     }
 
     public Vector<Integer> getklocki_on() {return klocki_on;}
-    public static int[] getklockiX() {return klockiXPos;}
-    public static int[] getklockiY() {return klockiYPos;}
+    public int[] getklockiX() {return klockiXPos;}
+    public int[] getklockiY() {return klockiYPos;}
     public int[] getmocneklockiX() {return solidBricksXPos;}
     public int[] getmocneklockiY() {return solidBricksYPos;}
 
