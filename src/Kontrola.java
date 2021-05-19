@@ -29,35 +29,59 @@ public class Kontrola extends JFrame {
 
         if(klawisze[0]) 
         {
-            tank1.ruchGora();
+            if(!mur.checkSolidCollision(tank1.getX(), tank1.getY()-1) && !mur.checkCollision(tank1.getX(), tank1.getY()-1))
+            {
+            tank1.ruchGora(); 
+            }
         }
         if(klawisze[1])
         {
+            if(!mur.checkSolidCollision(tank1.getX(), tank1.getY()+1) && !mur.checkCollision(tank1.getX(), tank1.getY()+1))
+            {
             tank1.ruchDol();
+            }
         }
         if(klawisze[2])
         {
+            if(!mur.checkSolidCollision(tank1.getX()-1, tank1.getY()) && !mur.checkCollision(tank1.getX()-1, tank1.getY()))
+            {
             tank1.ruchLewo();
+            }
         }
         if(klawisze[3])
         {
+            if(!mur.checkSolidCollision(tank1.getX()+1, tank1.getY()) && !mur.checkCollision(tank1.getX()+1, tank1.getY()))
+            {
             tank1.ruchPrawo();
+            }
         }
         if(klawisze[4]) 
         {
-            tank2.ruchGora();
+            if(!mur.checkSolidCollision(tank2.getX(), tank2.getY()-1) && !mur.checkCollision(tank2.getX(), tank2.getY()-1))
+            {
+            tank2.ruchGora(); 
+            }
         }
         if(klawisze[5])
         {
+            if(!mur.checkSolidCollision(tank2.getX(), tank2.getY()+1) && !mur.checkCollision(tank2.getX(), tank2.getY()+1))
+            {
             tank2.ruchDol();
+            }
         }
         if(klawisze[6])
         {
+            if(!mur.checkSolidCollision(tank2.getX()-1, tank2.getY()) && !mur.checkCollision(tank2.getX()-1, tank2.getY()))
+            {
             tank2.ruchLewo();
+            }
         }
         if(klawisze[7])
         {
+            if(!mur.checkSolidCollision(tank2.getX()+1, tank2.getY()) && !mur.checkCollision(tank2.getX()+1, tank2.getY()))
+            {
             tank2.ruchPrawo();
+            }
         }
             repaint();
         }

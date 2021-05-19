@@ -47,13 +47,13 @@ public class Klocki {
     public boolean checkSolidCollision(int x, int y)
 	{
 		boolean collided = false;
-		for(int i=0; i< solidBricksXPos.length;i++)
+		for(int i=0; i< solidBricksXPos.length; i++)
 		{		
-			if(new Rectangle(x, y, 50, 50).intersects(new Rectangle(solidBricksXPos[i], solidBricksYPos[i], 50, 50)))
+			if(new Rectangle(x+5, y+5, 40, 40).intersects(new Rectangle(solidBricksXPos[i], solidBricksYPos[i], 50, 50)))
 			{		
 				collided = true;
 				break;
-			}			
+			}
 		}
 		
 		return collided;
@@ -61,20 +61,17 @@ public class Klocki {
 
     public boolean checkCollision(int x, int y)
 	{
-		boolean collided = false;
-		for(int i=0; i< klocki_on.size();i++)
+		boolean collided1 = false;
+		for(int i=0; i< klockiXPos.length;i++)
 		{
-			if(klocki_on.get(i)==1)
+			if(new Rectangle(x+5, y+5, 40, 40).intersects(new Rectangle(klockiXPos[i], klockiYPos[i], 50, 50)))
 			{
-				if(new Rectangle(x, y, 50, 50).intersects(new Rectangle(klockiXPos[i], klockiYPos[i], 50, 50)))
-				{
-					klocki_on.set(i, 0);
-					collided = true;
-					break;
-				}
+				//klocki_on.set(i, 0);
+				collided1 = true;
+				break;
 			}
 		}
 		
-		return collided;
+		return collided1;
 	}
 }
