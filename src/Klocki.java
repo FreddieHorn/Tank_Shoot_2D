@@ -43,5 +43,38 @@ public class Klocki {
     public int[] getklockiY() {return klockiYPos;}
     public int[] getmocneklockiX() {return solidBricksXPos;}
     public int[] getmocneklockiY() {return solidBricksYPos;}
+	
+    public boolean checkSolidCollision(int x, int y)
+	{
+		boolean collided = false;
+		for(int i=0; i< solidBricksXPos.length;i++)
+		{		
+			if(new Rectangle(x, y, 50, 50).intersects(new Rectangle(solidBricksXPos[i], solidBricksYPos[i], 50, 50)))
+			{		
+				collided = true;
+				break;
+			}			
+		}
+		
+		return collided;
+	}
 
+    public boolean checkCollision(int x, int y)
+	{
+		boolean collided = false;
+		for(int i=0; i< klocki_on.size();i++)
+		{
+			if(klocki_on.get(i)==1)
+			{
+				if(new Rectangle(x, y, 50, 50).intersects(new Rectangle(klockiXPos[i], klockiYPos[i], 50, 50)))
+				{
+					klocki_on.set(i, 0);
+					collided = true;
+					break;
+				}
+			}
+		}
+		
+		return collided;
+	}
 }
