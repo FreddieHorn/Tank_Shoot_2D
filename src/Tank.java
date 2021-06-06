@@ -1,12 +1,16 @@
 import java.awt.*;
-
+import java.io.*;
 
 
 
 public class Tank {
     private int x;
     private int y;
+    private int x2;
+    private int y2;
     private int kierunek;
+    private Klocki mur;
+    private Gameplay gra;
     private int health;
     private int score;
 
@@ -40,39 +44,64 @@ public class Tank {
     {
         this.kierunek = x;
     }
-    public void ruchPrawo()
+    public void ruchPrawo(int x_of_second_tank, int y_of_second_tank, Klocki given_mur, Gameplay given_gra)
     {
-        
-        this.x = x+1;
-        if(x>600) x = 600;
-        //this.kierunek = 0;
+        this.mur = given_mur;
+        this.gra = given_gra;
+        this.x2 = x_of_second_tank;
+        this.y2 = y_of_second_tank;
+        if(!mur.checkSolidCollision(this.x+1, this.y) && !mur.checkCollision(this.x+1, this.y) && !gra.CheckTankCollision(this.x+1, this.y, this.x2, this.y2))
+        {
+            mur.checkCollision(this.x+1, this.y);
+            this.x = x+1;
+            if(x>600) x = 600;
+        }
     }
-      public void ruchLewo()
+      public void ruchLewo(int x_of_second_tank, int y_of_second_tank, Klocki given_mur, Gameplay given_gra)
     {
-        
-        this.x = x-1;
-        if(x<0) x = 0;
+        this.mur = given_mur;
+        this.gra = given_gra;
+        this.x2 = x_of_second_tank;
+        this.y2 = y_of_second_tank;
+        if(!mur.checkSolidCollision(this.x-1, this.y) && !mur.checkCollision(this.x-1, this.y) && !gra.CheckTankCollision(this.x-1, this.y, this.x2, this.y2))
+        {
+            mur.checkCollision(this.x-1, this.y);
+            this.x = x-1;
+            if(x<0) x = 0;
+        }
         //this.kierunek=1;
         
     }
-    public void ruchGora()
+    public void ruchGora(int x_of_second_tank, int y_of_second_tank, Klocki given_mur, Gameplay given_gra)
     {
-        
-        this.y = y-1;
-        if(y<0) y = 0;
-        
+        //System.out.println("susiak"); 
+        this.mur = given_mur;
+        this.gra = given_gra;
+        this.x2 = x_of_second_tank;
+        this.y2 = y_of_second_tank;
+        if(!mur.checkSolidCollision(this.x, this.y-1) && !mur.checkCollision(this.x, this.y-1) && !gra.CheckTankCollision(this.x, this.y-1, this.x2, this.y2))
+        {
+            mur.checkCollision(this.x, this.y-1);
+            this.y = y-1;
+            if(y<0) y = 0;
+        }
+
     }
-    public void ruchDol()
+    public void ruchDol(int x_of_second_tank, int y_of_second_tank, Klocki given_mur, Gameplay given_gra)
     {
-        
-        this.y = y+1;
-        if(y>550) y = 550;
-        //this.kierunek=3;
+        this.mur = given_mur;
+        this.gra = given_gra;
+        this.x2 = x_of_second_tank;
+        this.y2 = y_of_second_tank;
+        if(!mur.checkSolidCollision(this.x, this.y+1) && !mur.checkCollision(this.x, this.y+1) && !gra.CheckTankCollision(this.x, this.y+1, this.x2, this.y2))
+        {
+            mur.checkCollision(this.x, this.y+1);
+            this.y = y+1;
+            if(y>550) y = 550;
+        }
     }
     public int getX() {return x;}
     public int getY() {return y;}
     public int getkierunek() {return kierunek;}
-    public Rectangle getwymiary(){
-        return new Rectangle(this.x,this.y,50,50);
-    }
+
 }

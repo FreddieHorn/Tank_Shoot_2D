@@ -55,26 +55,41 @@ public class Klocki {
 				break;
 			}
 		}
-		
 		return collided;
 	}
 
-    public void checkCollision(int x, int y)
+    public boolean checkCollision(int x, int y)
 	{
-		//boolean collided1 = false;
+		boolean collided1 = false;
 		for(int i=0; i< klocki_on.size();i++)
 		{
             if(klocki_on.get(i)==1)
             {
                 if(new Rectangle(x+5, y+5, 40, 40).intersects(new Rectangle(klockiXPos[i], klockiYPos[i], 50, 50)))
                 {
-                    klocki_on.set(i, 0);
-                    //collided1 = true;
+                    collided1 = true;
                     break;
                 }
             }
 		}
-		
-		//return collided1;
+		return collided1;
+	}
+
+    public boolean checkbulletCollision(int x, int y)
+	{
+		boolean collided1 = false;
+		for(int i=0; i< klocki_on.size();i++)
+		{
+            if(klocki_on.get(i)==1)
+            {
+                if(new Rectangle(x, y, 5, 5).intersects(new Rectangle(klockiXPos[i], klockiYPos[i], 50, 50)))
+                {
+                    collided1 = true;
+                    klocki_on.set(i, 0); 
+                    break;
+                }
+            }
+		}
+		return collided1;
 	}
 }

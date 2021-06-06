@@ -8,9 +8,11 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.Vector;
 
 public class Kontrola extends JFrame {
 
+    private Image pocisk;
     private Image klocek;
     private Image klocek_mocny;
     private Image tlo;
@@ -18,101 +20,95 @@ public class Kontrola extends JFrame {
     private Image tank_down;
     private Image tank_left;
     private Image tank_right;
-    private Klocki mur;
+    public Klocki mur;
     private Timer zegar; 
     private boolean klawisze[];
-    private Tank tank1;
-    private Tank tank2;
+    public Tank tank1;
+    public Tank tank2;
+    private Missiles pociski;
     private Gameplay gra;
-    class Zadanie extends TimerTask{
+    private int licznik1 = 0;
+    private boolean zatrzask1 = false;
+    public Klocki murek() {return mur;}
+    public class Zadanie extends TimerTask{
         public void run(){
+
 
         if(klawisze[0]) 
         {
             tank1.setkierunek(2);
-            if(!mur.checkSolidCollision(tank1.getX(), tank1.getY()-1) && !gra.CheckTankCollision(tank1.getX(), tank1.getY()-1, tank2.getX(), tank2.getY()))
-            {
-            mur.checkCollision(tank1.getX(), tank1.getY()-1);
-            tank1.ruchGora(); 
-            }
+            tank1.ruchGora(tank2.getX(),tank2.getY(),mur,gra); 
         }
         if(klawisze[1])
         {
             tank1.setkierunek(3);
-            if(!mur.checkSolidCollision(tank1.getX(), tank1.getY()+1) && !gra.CheckTankCollision(tank1.getX(), tank1.getY()+1, tank2.getX(), tank2.getY()))
-            {
-            mur.checkCollision(tank1.getX(), tank1.getY()+1);
-            tank1.ruchDol();
-            }
+            tank1.ruchDol(tank2.getX(),tank2.getY(),mur,gra);
         }
         if(klawisze[2])
         {
             tank1.setkierunek(1);
-            if(!mur.checkSolidCollision(tank1.getX()-1, tank1.getY()) && !gra.CheckTankCollision(tank1.getX()-1, tank1.getY(), tank2.getX(), tank2.getY()))
-            {
-            mur.checkCollision(tank1.getX()-1, tank1.getY());
-            tank1.ruchLewo();
-            }
+            tank1.ruchLewo(tank2.getX(),tank2.getY(),mur,gra);
         }
         if(klawisze[3])
         {
             tank1.setkierunek(0);
-            if(!mur.checkSolidCollision(tank1.getX()+1, tank1.getY()) && !gra.CheckTankCollision(tank1.getX()+1, tank1.getY(), tank2.getX(), tank2.getY()))
-            {
-            mur.checkCollision(tank1.getX()+1, tank1.getY());
-            tank1.ruchPrawo();
-            }
+            tank1.ruchPrawo(tank2.getX(),tank2.getY(),mur,gra);
         }
         
         if(klawisze[4]) 
         {
             tank2.setkierunek(2);
-            if(!mur.checkSolidCollision(tank2.getX(), tank2.getY()-1) && !gra.CheckTankCollision(tank1.getX(), tank1.getY(), tank2.getX(), tank2.getY()-1))
-            {
-            mur.checkCollision(tank2.getX(), tank2.getY()-1);
-            tank2.ruchGora(); 
-            }
+            tank2.ruchGora(tank1.getX(),tank1.getY(),mur,gra); 
         }
         if(klawisze[5])
         {
             tank2.setkierunek(3);
-            if(!mur.checkSolidCollision(tank2.getX(), tank2.getY()+1) && !gra.CheckTankCollision(tank1.getX(), tank1.getY(), tank2.getX(), tank2.getY()+1))
-            {
-            mur.checkCollision(tank2.getX(), tank2.getY()+1);
-            tank2.ruchDol();
-            }
+            tank2.ruchDol(tank1.getX(),tank1.getY(),mur,gra);
+            
         }
         if(klawisze[6])
         {
             tank2.setkierunek(1);
-            if(!mur.checkSolidCollision(tank2.getX()-1, tank2.getY()) && !gra.CheckTankCollision(tank1.getX(), tank1.getY(), tank2.getX()-1, tank2.getY()))
-            {
-            mur.checkCollision(tank2.getX()-1, tank2.getY());
-            tank2.ruchLewo();
-            }
+            tank2.ruchLewo(tank1.getX(),tank1.getY(),mur,gra);
         }
         if(klawisze[7])
         {
             tank2.setkierunek(0);
-            if(!mur.checkSolidCollision(tank2.getX()+1, tank2.getY()) && !gra.CheckTankCollision(tank1.getX(), tank1.getY(), tank2.getX()+1, tank2.getY()))
+            tank2.ruchPrawo(tank1.getX(),tank1.getY(),mur,gra);
+        }
+        if (klawisze[8] && zatrzask1==false)
+        {
+            pociski.newMissile(tank2.getX(),tank2.getY(),tank2.getkierunek());
+            zatrzask1 = true;
+        }
+        if (zatrzask1 == true)
+        {
+            licznik1 += 1;
+            if (licznik1 == 50)
             {
-            mur.checkCollision(tank2.getX()+1, tank2.getY());
-            tank2.ruchPrawo();
+                zatrzask1 = false;
+                licznik1 = 0;
             }
         }
+
+        pociski.emptyMissiles(mur);
+            
         
-            repaint();
+        repaint();
+        
         }
+
     }
     Kontrola(){
         super("Tank_Shoot 2D");
-        setBounds(40,40,800,600);
+        setBounds(0,0,800,600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBackground(Color.black);
         setResizable(false);
         setVisible(true);
         createBufferStrategy(2);
         
+        pocisk = new ImageIcon("obrazki/pocisk.png").getImage();
         klocek = new ImageIcon("obrazki/klocek.jpg").getImage();
         tlo = new ImageIcon("obrazki/tlo.jpg").getImage();
         klocek_mocny = new ImageIcon("obrazki/klocek_mocny.jpg").getImage();
@@ -121,10 +117,11 @@ public class Kontrola extends JFrame {
         tank_left = new ImageIcon("obrazki/tank1_left.png").getImage();
         tank_right = new ImageIcon("obrazki/tank1_right.png").getImage();
         mur = new Klocki();
-        tank1 = new Tank(200,550);
-        tank2 = new Tank(400,550);
-        klawisze = new boolean[8];
+        tank1 = new Tank(400,550);
+        tank2 = new Tank(200,550);
+        klawisze = new boolean[14];
         gra = new Gameplay();
+        pociski = new Missiles();
     
     
         zegar = new Timer();
@@ -159,6 +156,10 @@ public class Kontrola extends JFrame {
                     case KeyEvent.VK_D:   klawisze[7] = true;
                     //tank1.ruchPrawo();
                     break;
+                    case KeyEvent.VK_SPACE:   klawisze[8] = true;
+                                              
+                    //tank1.ruchPrawo();
+                    break;
                 }
             }
 
@@ -178,7 +179,7 @@ public class Kontrola extends JFrame {
             public void keyTyped(KeyEvent e){
             }
         }
-);
+        );
     }
 
     
@@ -263,10 +264,10 @@ public class Kontrola extends JFrame {
         g2d.drawString((String.valueOf(tank1.getY())), 90, 120);
         g2d.drawString((String.valueOf(tank2.getX())), 70, 140);
         g2d.drawString((String.valueOf(tank2.getY())), 90, 140);
+        for (int i = 0; i < pociski.getMissiles().size(); i++)
+        g2d.drawImage(pocisk, pociski.getMissiles().get(i).getX(),pociski.getMissiles().get(i).getY(),null);
         //g2d.drawImage(tank_up,tank1.getX(),tank1.getY(),null);
         g2d.setColor(Color.white);
         bstrategy.show();
     }
-
-
 }
