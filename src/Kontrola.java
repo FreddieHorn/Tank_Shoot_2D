@@ -31,7 +31,6 @@ public class Kontrola extends JFrame {
     private int licznik2 = 0;
     private boolean zatrzask1 = false;
     private boolean zatrzask2 = false;  
-    public Klocki murek() {return mur;}
     public class Zadanie extends TimerTask{
         public void run(){
 
@@ -219,7 +218,7 @@ public class Kontrola extends JFrame {
         g2d.setColor(Color.WHITE);
         g2d.setFont(new Font("Arial", Font.BOLD, 10));
         g2d.drawString("Zdrowie gracza 1: " + String.valueOf(tank1.getHealth()), 670, 50);
-        g2d.drawString("Zdrowie gracza 2: " + String.valueOf(tank1.getHealth()), 670, 80);
+        g2d.drawString("Zdrowie gracza 2: " + String.valueOf(tank2.getHealth()), 670, 80);
 
 
         //rysowanie mapy
