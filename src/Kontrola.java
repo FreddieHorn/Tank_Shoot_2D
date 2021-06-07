@@ -219,7 +219,7 @@ public class Kontrola extends JFrame {
         g2d.setColor(Color.WHITE);
         g2d.setFont(new Font("Arial", Font.BOLD, 10));
         g2d.drawString("Zdrowie gracza 1: " + String.valueOf(tank1.getHealth()), 670, 50);
-        g2d.drawString("Zdrowie gracza 2: " + String.valueOf(tank1.getHealth()), 670, 80);
+        g2d.drawString("Zdrowie gracza 2: " + String.valueOf(tank2.getHealth()), 670, 80);
 
 
         //rysowanie mapy

@@ -24,7 +24,7 @@ public class Tank {
 
     public void setHealth(int h)
     {
-        if(this.health>0&&this.health<5)
+        if(this.health>0&&this.health<=5)
             this.health -= h; 
     }
 
