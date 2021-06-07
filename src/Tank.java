@@ -22,10 +22,10 @@ public class Tank {
         this.score = 0;
     }
 
-    public void setHealth()
+    public void setHealth(int h)
     {
         if(this.health>0&&this.health<=5)
-            this.health -= 1; 
+            this.health -= h; 
     }
 
     public void up_score(int h)

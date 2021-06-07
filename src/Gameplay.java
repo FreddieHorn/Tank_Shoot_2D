@@ -22,7 +22,7 @@ public class Gameplay {
             if(new Rectangle(x1, y1, 5, 5).intersects(new Rectangle(x2, y2, 40, 40)))
             {		
                 collided = true;
-                tank2.setHealth();
+                tank2.setHealth(1);
             }
         }
         else if(missile.getshooter()==1)
@@ -30,7 +30,7 @@ public class Gameplay {
             if(new Rectangle(x1, y1, 5, 5).intersects(new Rectangle(x3, y3, 40, 40)))
             {		
                 collided = true;
-                tank2.setHealth();
+                tank1.setHealth(1);
             }
         }
         return collided;
