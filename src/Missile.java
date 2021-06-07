@@ -1,15 +1,16 @@
-import java.awt.*;
+
 public class Missile {
     private int x;
     private int y;
     private int kierunek;
-    private Klocki mur;
+    private int shooter;
 
-    public Missile(int given_tank_x, int given_tank_y, int given_tank_kierunek)
+    public Missile(int given_tank_x, int given_tank_y, int given_tank_kierunek, int who_shot)
     {
         this.x = given_tank_x;
         this.y = given_tank_y;
         this.kierunek = given_tank_kierunek;
+        this.shooter = who_shot;
         if (this.kierunek == 0)
         {
             this.x = given_tank_x + 45;
@@ -34,19 +35,15 @@ public class Missile {
     {
         switch(kierunek){
         case 0:
-            //if(mur.checkbulletCollision(this.x+2,this.y)==false)
                 this.x = this.x+2;
         break;
         case 1:
-            //if(mur.checkbulletCollision(this.x-2,this.y)==false)
                 this.x = this.x-2;
         break;
         case 2:
-            //if(mur.checkbulletCollision(this.x,this.y-2)==false)
                 this.y = this.y-2;    
         break;
         case 3:
-            //if(mur.checkbulletCollision(this.x,this.y+2)==false)
                 this.y = this.y+2;
         break;
         }
@@ -54,4 +51,5 @@ public class Missile {
     public int getX() {return this.x;}
     public int getY() {return this.y;}
     public int getkierunek() {return kierunek;}
+    public int getshooter() {return this.shooter;}
 }

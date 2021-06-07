@@ -1,8 +1,5 @@
 import java.io.Serializable;
-
-import java.io.Serializable;
 import java.util.Vector;
-import java.awt.*;
 
 public class Missiles implements Serializable{
     private Vector<Missile> missiles;
@@ -20,11 +17,11 @@ public class Missiles implements Serializable{
     }
 
     //tworzenie nowych pociskow i dodawanie ich do obecnego wektora pociskow
-    public void newMissile(int x,int y,int kierunek){
-        missiles.add(new Missile(x,y,kierunek));
+    public void newMissile(int x,int y,int kierunek, int who_shot){
+        missiles.add(new Missile(x,y,kierunek, who_shot));
     }
 
-    public void emptyMissiles(Klocki mur){
+    public void emptyMissiles(Klocki mur, Tank tank1, Tank tank2, Gameplay gm){
         if(!missiles.isEmpty())
         {
             for(int i=0;i<missiles.size();i++)
@@ -39,7 +36,9 @@ public class Missiles implements Serializable{
                 kierunek=missiles.get(i).getkierunek();
                 switch(kierunek){
                     case 0: 
-                        if(missiles.get(i).getX()>=600 || mur.checkbulletCollision(missiles.get(i).getX()+2,missiles.get(i).getY())==true)
+                        if(missiles.get(i).getX()>=600 || mur.checkbulletCollision(missiles.get(i).getX(),missiles.get(i).getY())==true || 
+                        mur.checkSolidBulletCollision(missiles.get(i).getX(),missiles.get(i).getY())==true || gm.CheckbulletandtankCollision(missiles.get(i).getX(),missiles.get(i).getY(), 
+                        tank1.getX(), tank1.getY(), tank2.getX(), tank2.getY(), missiles.get(i), tank1, tank2))
                         {
                             missiles.remove(i);
                             i=0;
@@ -50,7 +49,9 @@ public class Missiles implements Serializable{
                         }
                     break;
                     case 1:
-                        if(missiles.get(i).getX()<=0 || mur.checkbulletCollision(missiles.get(i).getX()-2,missiles.get(i).getY())==true)
+                        if(missiles.get(i).getX()<=0 || mur.checkbulletCollision(missiles.get(i).getX(),missiles.get(i).getY())==true ||
+                        mur.checkSolidBulletCollision(missiles.get(i).getX(),missiles.get(i).getY())==true || gm.CheckbulletandtankCollision(missiles.get(i).getX(),missiles.get(i).getY(), 
+                        tank1.getX(), tank1.getY(), tank2.getX(), tank2.getY(), missiles.get(i), tank1, tank2))
                         {
                             missiles.remove(i);
                             i=0;
@@ -61,7 +62,9 @@ public class Missiles implements Serializable{
                         }
                     break;
                     case 2:
-                        if(missiles.get(i).getY()<=0 || mur.checkbulletCollision(missiles.get(i).getX(),missiles.get(i).getY()-2)==true)
+                        if(missiles.get(i).getY()<=0 || mur.checkbulletCollision(missiles.get(i).getX(),missiles.get(i).getY())==true ||
+                        mur.checkSolidBulletCollision(missiles.get(i).getX(),missiles.get(i).getY())==true || gm.CheckbulletandtankCollision(missiles.get(i).getX(),missiles.get(i).getY(), 
+                        tank1.getX(), tank1.getY(), tank2.getX(), tank2.getY(), missiles.get(i), tank1, tank2))
                         {
                             missiles.remove(i);
                             i=0;
@@ -72,7 +75,9 @@ public class Missiles implements Serializable{
                         }
                     break;
                     case 3:
-                        if(missiles.get(i).getY()>=600 || mur.checkbulletCollision(missiles.get(i).getX(),missiles.get(i).getY()+2)==true)
+                        if(missiles.get(i).getY()>=600 || mur.checkbulletCollision(missiles.get(i).getX(),missiles.get(i).getY())==true || 
+                        mur.checkSolidBulletCollision(missiles.get(i).getX(),missiles.get(i).getY())==true || gm.CheckbulletandtankCollision(missiles.get(i).getX(),missiles.get(i).getY(), 
+                        tank1.getX(), tank1.getY(), tank2.getX(), tank2.getY(), missiles.get(i), tank1, tank2))
                         {
                             missiles.remove(i);
                             i=0;

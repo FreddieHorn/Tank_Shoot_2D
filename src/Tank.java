@@ -1,5 +1,3 @@
-import java.awt.*;
-import java.io.*;
 
 
 
@@ -27,7 +25,7 @@ public class Tank {
     public void setHealth(int h)
     {
         if(this.health>0&&this.health<5)
-            this.health += h; 
+            this.health -= h; 
     }
 
     public void up_score(int h)
@@ -69,12 +67,10 @@ public class Tank {
             this.x = x-1;
             if(x<0) x = 0;
         }
-        //this.kierunek=1;
         
     }
     public void ruchGora(int x_of_second_tank, int y_of_second_tank, Klocki given_mur, Gameplay given_gra)
     {
-        //System.out.println("susiak"); 
         this.mur = given_mur;
         this.gra = given_gra;
         this.x2 = x_of_second_tank;

@@ -1,8 +1,5 @@
-import java.awt.Component;
-import java.awt.Graphics;
+
 import java.awt.Rectangle;
-import javax.swing.ImageIcon;
-import java.awt.Image;
 import java.util.Vector;
 
 public class Klocki {
@@ -91,5 +88,19 @@ public class Klocki {
             }
 		}
 		return collided1;
+	}
+
+    public boolean checkSolidBulletCollision(int x, int y)
+	{
+		boolean collided = false;
+		for(int i=0; i< solidBricksXPos.length; i++)
+		{		
+			if(new Rectangle(x, y, 5, 5).intersects(new Rectangle(solidBricksXPos[i], solidBricksYPos[i], 50, 50)))
+			{		
+				collided = true;
+				break;
+			}
+		}
+		return collided;
 	}
 }

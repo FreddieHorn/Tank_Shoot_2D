@@ -8,7 +8,7 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.Vector;
+
 
 public class Kontrola extends JFrame {
 
@@ -28,7 +28,9 @@ public class Kontrola extends JFrame {
     private Missiles pociski;
     private Gameplay gra;
     private int licznik1 = 0;
+    private int licznik2 = 0;
     private boolean zatrzask1 = false;
+    private boolean zatrzask2 = false;  
     public Klocki murek() {return mur;}
     public class Zadanie extends TimerTask{
         public void run(){
@@ -76,11 +78,29 @@ public class Kontrola extends JFrame {
             tank2.setkierunek(0);
             tank2.ruchPrawo(tank1.getX(),tank1.getY(),mur,gra);
         }
+
         if (klawisze[8] && zatrzask1==false)
         {
-            pociski.newMissile(tank2.getX(),tank2.getY(),tank2.getkierunek());
+            pociski.newMissile(tank2.getX(),tank2.getY(),tank2.getkierunek(), 0);
             zatrzask1 = true;
         }
+
+        if (klawisze[9] && zatrzask2 == false)
+        {
+            pociski.newMissile(tank1.getX(),tank1.getY(),tank1.getkierunek(), 1);
+            zatrzask2 = true;
+        }
+
+        if (zatrzask2 == true)
+        {
+            licznik2 += 1;
+            if (licznik2 == 50)
+            {
+                zatrzask2 = false;
+                licznik2 = 0;
+            }
+        }
+
         if (zatrzask1 == true)
         {
             licznik1 += 1;
@@ -90,8 +110,9 @@ public class Kontrola extends JFrame {
                 licznik1 = 0;
             }
         }
+        
 
-        pociski.emptyMissiles(mur);
+        pociski.emptyMissiles(mur, tank1, tank2, gra);
             
         
         repaint();
@@ -133,32 +154,24 @@ public class Kontrola extends JFrame {
                
                 switch(e.getKeyCode()){
                     case KeyEvent.VK_UP:      klawisze[0] = true;
-                    //tank1.ruchGora();
                     break;
                     case KeyEvent.VK_DOWN:    klawisze[1] = true;
-                    //tank1.ruchDol();
                     break;
                     case KeyEvent.VK_LEFT:    klawisze[2] = true;
-                    //tank1.ruchLewo();
                     break;
                     case KeyEvent.VK_RIGHT:   klawisze[3] = true;
-                    //tank1.ruchPrawo();
                     break;
                     case KeyEvent.VK_W:      klawisze[4] = true;
-                    //tank1.ruchGora();
                     break;
                     case KeyEvent.VK_S:    klawisze[5] = true;
-                    //tank1.ruchDol();
                     break;
                     case KeyEvent.VK_A:    klawisze[6] = true;
-                    //tank1.ruchLewo();
                     break;
                     case KeyEvent.VK_D:   klawisze[7] = true;
-                    //tank1.ruchPrawo();
                     break;
                     case KeyEvent.VK_SPACE:   klawisze[8] = true;
-                                              
-                    //tank1.ruchPrawo();
+                    break;
+                    case KeyEvent.VK_M:   klawisze[9] = true;
                     break;
                 }
             }
@@ -173,6 +186,8 @@ public class Kontrola extends JFrame {
                     case KeyEvent.VK_S:    klawisze[5] = false; break;
                     case KeyEvent.VK_A:    klawisze[6] = false; break;
                     case KeyEvent.VK_D:   klawisze[7] = false; break;
+                    case KeyEvent.VK_SPACE:   klawisze[8] = false; break;
+                    case KeyEvent.VK_M:   klawisze[9] = false; break;
                 }
             }
 
@@ -258,15 +273,12 @@ public class Kontrola extends JFrame {
             g2d.drawImage(tank_down, tank2.getX(),tank2.getY(),null);
         }
         g2d.setColor(Color.white);
-        //g2d.drawString((String.valueOf(tank1.getkierunek())), 120, 120);
-        //g2d.drawImage(tank_up,tank1.getX(),tank1.getY(),null);
         g2d.drawString((String.valueOf(tank1.getX())), 70, 120);
         g2d.drawString((String.valueOf(tank1.getY())), 90, 120);
         g2d.drawString((String.valueOf(tank2.getX())), 70, 140);
         g2d.drawString((String.valueOf(tank2.getY())), 90, 140);
         for (int i = 0; i < pociski.getMissiles().size(); i++)
         g2d.drawImage(pocisk, pociski.getMissiles().get(i).getX(),pociski.getMissiles().get(i).getY(),null);
-        //g2d.drawImage(tank_up,tank1.getX(),tank1.getY(),null);
         g2d.setColor(Color.white);
         bstrategy.show();
     }
