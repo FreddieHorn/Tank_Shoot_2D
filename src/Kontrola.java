@@ -40,122 +40,127 @@ public class Kontrola extends JFrame {
     private boolean zatrzask2 = false;
     private Boost boost;  
     private boolean koniec_gry = false;
-    private static boolean restart = false;
+    private boolean halt = false;
+    private boolean halt1 = false;
     public class Zadanie extends TimerTask{
         public void run(){
 
-
-        if(klawisze[0]) 
+        if (halt == false)
         {
-            tank1.setkierunek(2);
-            tank1.ruchGora(tank2.getX(),tank2.getY(),mur,gra); 
-        }
-        if(klawisze[1])
-        {
-            tank1.setkierunek(3);
-            tank1.ruchDol(tank2.getX(),tank2.getY(),mur,gra);
-        }
-        if(klawisze[2])
-        {
-            tank1.setkierunek(1);
-            tank1.ruchLewo(tank2.getX(),tank2.getY(),mur,gra);
-        }
-        if(klawisze[3])
-        {
-            tank1.setkierunek(0);
-            tank1.ruchPrawo(tank2.getX(),tank2.getY(),mur,gra);
-        }
-        
-        if(klawisze[4]) 
-        {
-            tank2.setkierunek(2);
-            tank2.ruchGora(tank1.getX(),tank1.getY(),mur,gra); 
-        }
-        if(klawisze[5])
-        {
-            tank2.setkierunek(3);
-            tank2.ruchDol(tank1.getX(),tank1.getY(),mur,gra);
-            
-        }
-        if(klawisze[6])
-        {
-            tank2.setkierunek(1);
-            tank2.ruchLewo(tank1.getX(),tank1.getY(),mur,gra);
-        }
-        if(klawisze[7])
-        {
-            tank2.setkierunek(0);
-            tank2.ruchPrawo(tank1.getX(),tank1.getY(),mur,gra);
-        }
-
-        if (klawisze[8] && zatrzask1==false)
-        {
-            pociski.newMissile(tank2.getX(),tank2.getY(),tank2.getkierunek(), 0);
-            zatrzask1 = true;
-        }
-
-        if (klawisze[9] && zatrzask2 == false)
-        {
-            pociski.newMissile(tank1.getX(),tank1.getY(),tank1.getkierunek(), 1);
-            zatrzask2 = true;
-        }
-
-        if (zatrzask2 == true)
-        {
-            licznik2 += 1;
-            if (licznik2 == 50)
+            if(klawisze[0]) 
             {
-                zatrzask2 = false;
-                licznik2 = 0;
+                tank1.setkierunek(2);
+                tank1.ruchGora(tank2.getX(),tank2.getY(),mur,gra); 
+            }
+            if(klawisze[1])
+            {
+                tank1.setkierunek(3);
+                tank1.ruchDol(tank2.getX(),tank2.getY(),mur,gra);
+            }
+            if(klawisze[2])
+            {
+                tank1.setkierunek(1);
+                tank1.ruchLewo(tank2.getX(),tank2.getY(),mur,gra);
+            }
+            if(klawisze[3])
+            {
+                tank1.setkierunek(0);
+                tank1.ruchPrawo(tank2.getX(),tank2.getY(),mur,gra);
+            }
+            
+            if(klawisze[4]) 
+            {
+                tank2.setkierunek(2);
+                tank2.ruchGora(tank1.getX(),tank1.getY(),mur,gra); 
+            }
+            if(klawisze[5])
+            {
+                tank2.setkierunek(3);
+                tank2.ruchDol(tank1.getX(),tank1.getY(),mur,gra);
+                
+            }
+            if(klawisze[6])
+            {
+                tank2.setkierunek(1);
+                tank2.ruchLewo(tank1.getX(),tank1.getY(),mur,gra);
+            }
+            if(klawisze[7])
+            {
+                tank2.setkierunek(0);
+                tank2.ruchPrawo(tank1.getX(),tank1.getY(),mur,gra);
+            }
+
+            if (klawisze[8] && zatrzask1==false)
+            {
+                pociski.newMissile(tank2.getX(),tank2.getY(),tank2.getkierunek(), 0);
+                zatrzask1 = true;
+            }
+
+            if (klawisze[9] && zatrzask2 == false)
+            {
+                pociski.newMissile(tank1.getX(),tank1.getY(),tank1.getkierunek(), 1);
+                zatrzask2 = true;
+            }
+
+            if (zatrzask2 == true)
+            {
+                licznik2 += 1;
+                if (licznik2 == 50)
+                {
+                    zatrzask2 = false;
+                    licznik2 = 0;
+                }
+            }
+
+            if (zatrzask1 == true)
+            {
+                licznik1 += 1;
+                if (licznik1 == 50)
+                {
+                    zatrzask1 = false;
+                    licznik1 = 0;
+                }
+            }
+            
+            boost.collisoncheck(tank1);
+            boost.collisoncheck(tank2);
+
+            ///gra.checkboostduration(tank1, licznik3);
+            //gra.checkboostduration(tank2, licznik4);
+            if(tank1.getspeed_boost())
+            {
+                
+        
+                    licznik3 += 1;
+                    if (licznik3 == 1000)
+                    {
+                        tank1.setspeed_boost(false);
+                        licznik3 = 0;
+                    }
+                
+            }
+
+            if(tank2.getspeed_boost())
+            {
+                
+        
+                    licznik4 += 1;
+                    if (licznik4 == 1000)
+                    {
+                        tank2.setspeed_boost(false);
+                        licznik4 = 0;
+                    }
+                
+            }
+
+            pociski.emptyMissiles(mur, tank1, tank2, gra);
+
+            if (!halt)
+            {
+                if(!koniec_gry)
+                    repaint();
             }
         }
-
-        if (zatrzask1 == true)
-        {
-            licznik1 += 1;
-            if (licznik1 == 50)
-            {
-                zatrzask1 = false;
-                licznik1 = 0;
-            }
-        }
-        
-        boost.collisoncheck(tank1);
-        boost.collisoncheck(tank2);
-
-        ///gra.checkboostduration(tank1, licznik3);
-        //gra.checkboostduration(tank2, licznik4);
-        if(tank1.getspeed_boost())
-        {
-            
-      
-                licznik3 += 1;
-                if (licznik3 == 1000)
-                {
-                    tank1.setspeed_boost(false);
-                    licznik3 = 0;
-                }
-            
-        }
-
-        if(tank2.getspeed_boost())
-        {
-            
-      
-                licznik4 += 1;
-                if (licznik4 == 1000)
-                {
-                    tank2.setspeed_boost(false);
-                    licznik4 = 0;
-                }
-            
-        }
-
-        pociski.emptyMissiles(mur, tank1, tank2, gra);
-            
-        if(!koniec_gry)
-            repaint();
-
         }
     }
     Kontrola(){
@@ -224,6 +229,11 @@ public class Kontrola extends JFrame {
                     dispose();
                     
                     break;
+                    case KeyEvent.VK_P:   klawisze[11] = true;
+                            halt = !halt;
+                            repaint();
+                       
+                    break;
                 }
             }
 
@@ -240,6 +250,7 @@ public class Kontrola extends JFrame {
                     case KeyEvent.VK_SPACE:   klawisze[8] = false; break;
                     case KeyEvent.VK_M:   klawisze[9] = false; break;
                     case KeyEvent.VK_R:   klawisze[10] = false; break;
+                    case KeyEvent.VK_P:   klawisze[11] = false;
                 }
             }
 
@@ -329,6 +340,8 @@ public class Kontrola extends JFrame {
             g2d.drawImage(tank2_down, tank2.getX(),tank2.getY(),null);
         }
 
+        for (int i = 0; i < pociski.getMissiles().size(); i++)
+            g2d.drawImage(pocisk, pociski.getMissiles().get(i).getX(),pociski.getMissiles().get(i).getY(),null);
         //rysowanie tarczy
         if(boost.getactive())
             g2d.drawImage(shield, boost.getX(), boost.getY(), null);
@@ -347,12 +360,12 @@ public class Kontrola extends JFrame {
             g2d.drawString("Koniec gry. Wygrał gracz 2", 100, 160);
             koniec_gry = true;
         }
-        /*g2d.drawString((String.valueOf(tank1.getX())), 70, 120);
-        g2d.drawString((String.valueOf(tank1.getY())), 90, 120);
-        g2d.drawString((String.valueOf(tank2.getX())), 70, 140);
-        g2d.drawString((String.valueOf(tank2.getY())), 90, 140);*/
-        for (int i = 0; i < pociski.getMissiles().size(); i++)
-        g2d.drawImage(pocisk, pociski.getMissiles().get(i).getX(),pociski.getMissiles().get(i).getY(),null);
+
+        if(halt)
+        {
+            g2d.drawString("PAUSED", 100, 160);
+            
+        }
         g2d.setColor(Color.white);
         bstrategy.show();
     }
