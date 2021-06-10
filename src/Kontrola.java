@@ -39,6 +39,8 @@ public class Kontrola extends JFrame {
     private boolean zatrzask1 = false;
     private boolean zatrzask2 = false;
     private Boost boost;  
+    private boolean koniec_gry = false;
+    private static boolean restart = false;
     public class Zadanie extends TimerTask{
         public void run(){
 
@@ -151,11 +153,10 @@ public class Kontrola extends JFrame {
 
         pociski.emptyMissiles(mur, tank1, tank2, gra);
             
-        
-        repaint();
-        
-        }
+        if(!koniec_gry)
+            repaint();
 
+        }
     }
     Kontrola(){
         super("Tank_Shoot 2D");
@@ -217,6 +218,12 @@ public class Kontrola extends JFrame {
                     break;
                     case KeyEvent.VK_M:   klawisze[9] = true;
                     break;
+                    case KeyEvent.VK_R:   klawisze[10] = true;
+                    Kontrola okno = new Kontrola();
+                    okno.repaint();
+                    dispose();
+                    
+                    break;
                 }
             }
 
@@ -232,6 +239,7 @@ public class Kontrola extends JFrame {
                     case KeyEvent.VK_D:   klawisze[7] = false; break;
                     case KeyEvent.VK_SPACE:   klawisze[8] = false; break;
                     case KeyEvent.VK_M:   klawisze[9] = false; break;
+                    case KeyEvent.VK_R:   klawisze[10] = false; break;
                 }
             }
 
@@ -325,10 +333,24 @@ public class Kontrola extends JFrame {
         if(boost.getactive())
             g2d.drawImage(shield, boost.getX(), boost.getY(), null);
         g2d.setColor(Color.white);
-        g2d.drawString((String.valueOf(tank1.getX())), 70, 120);
+
+        g2d.setColor(Color.RED);
+        g2d.setFont(new Font("Arial", Font.BOLD, 40));
+
+        if(tank1.getHealth() == 0)
+        {
+            g2d.drawString("Koniec gry. Wygrał gracz 2", 100, 160);
+            koniec_gry = true;
+        }
+        else if(tank2.getHealth()==0)
+        {
+            g2d.drawString("Koniec gry. Wygrał gracz 2", 100, 160);
+            koniec_gry = true;
+        }
+        /*g2d.drawString((String.valueOf(tank1.getX())), 70, 120);
         g2d.drawString((String.valueOf(tank1.getY())), 90, 120);
         g2d.drawString((String.valueOf(tank2.getX())), 70, 140);
-        g2d.drawString((String.valueOf(tank2.getY())), 90, 140);
+        g2d.drawString((String.valueOf(tank2.getY())), 90, 140);*/
         for (int i = 0; i < pociski.getMissiles().size(); i++)
         g2d.drawImage(pocisk, pociski.getMissiles().get(i).getX(),pociski.getMissiles().get(i).getY(),null);
         g2d.setColor(Color.white);

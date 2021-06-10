@@ -23,14 +23,7 @@ public class Boosts {
     }
 
     public void collisoncheck(Tank tank1, Tank tank2){
-        boolean collided = false;
-        for(int i=0;i<boosts.size();i++)
-            {
-                if(new Rectangle(boosts.get(i).getX(), boosts.get(i).getX(), 50, 50).intersects(new Rectangle(tank1.getX(), tank1.getY(), 40, 40)))
-                {
-                    collided = true;
-                }
-            }
+    
     }
 
 }
