@@ -224,14 +224,17 @@ public class Kontrola extends JFrame {
                     case KeyEvent.VK_M:   klawisze[9] = true;
                     break;
                     case KeyEvent.VK_R:   klawisze[10] = true;
-                    Kontrola okno = new Kontrola();
-                    okno.repaint();
-                    dispose();
+                        Kontrola okno = new Kontrola();
+                        okno.repaint();
+                        dispose();
                     
                     break;
                     case KeyEvent.VK_P:   klawisze[11] = true;
+                        if(koniec_gry == false)
+                        {
                             halt = !halt;
                             repaint();
+                        }
                        
                     break;
                 }
