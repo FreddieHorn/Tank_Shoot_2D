@@ -20,6 +20,11 @@ public class Kontrola extends JFrame {
     private Image tank_down;
     private Image tank_left;
     private Image tank_right;
+    private Image tank2_up;
+    private Image tank2_down;
+    private Image tank2_left;
+    private Image tank2_right;
+    private Image shield;
     public Klocki mur;
     private Timer zegar; 
     private boolean klawisze[];
@@ -170,6 +175,11 @@ public class Kontrola extends JFrame {
         tank_down = new ImageIcon("obrazki/tank1_down.png").getImage();
         tank_left = new ImageIcon("obrazki/tank1_left.png").getImage();
         tank_right = new ImageIcon("obrazki/tank1_right.png").getImage();
+        tank2_up = new ImageIcon("obrazki/tank2_up.png").getImage();
+        tank2_down = new ImageIcon("obrazki/tank2_down.png").getImage();
+        tank2_left = new ImageIcon("obrazki/tank2_left.png").getImage();
+        tank2_right = new ImageIcon("obrazki/tank2_right.png").getImage();
+        shield = new ImageIcon("obrazki/shield.jpg").getImage();
         mur = new Klocki();
         tank1 = new Tank(400,550);
         tank2 = new Tank(200,550);
@@ -296,20 +306,24 @@ public class Kontrola extends JFrame {
         }
         if(tank2.getkierunek()==0)
         {
-            g2d.drawImage(tank_right, tank2.getX(),tank2.getY(),null);
+            g2d.drawImage(tank2_right, tank2.getX(),tank2.getY(),null);
         }
         else if(tank2.getkierunek()==1)
         {
-            g2d.drawImage(tank_left, tank2.getX(),tank2.getY(),null);
+            g2d.drawImage(tank2_left, tank2.getX(),tank2.getY(),null);
         }
         else if(tank2.getkierunek()==2)
         {
-            g2d.drawImage(tank_up, tank2.getX(),tank2.getY(),null);
+            g2d.drawImage(tank2_up, tank2.getX(),tank2.getY(),null);
         }
         else if(tank2.getkierunek()==3)
         {
-            g2d.drawImage(tank_down, tank2.getX(),tank2.getY(),null);
+            g2d.drawImage(tank2_down, tank2.getX(),tank2.getY(),null);
         }
+
+        //rysowanie tarczy
+        if(boost.getactive())
+            g2d.drawImage(shield, boost.getX(), boost.getY(), null);
         g2d.setColor(Color.white);
         g2d.drawString((String.valueOf(tank1.getX())), 70, 120);
         g2d.drawString((String.valueOf(tank1.getY())), 90, 120);
