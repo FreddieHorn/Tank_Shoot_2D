@@ -1,5 +1,6 @@
 import java.awt.Rectangle;
 public class Gameplay {
+    private long timepassed;
 
     public boolean CheckTankCollision(int x1, int y1, int x2, int y2){
 
@@ -35,4 +36,33 @@ public class Gameplay {
         }
         return collided;
         }
+    
+
+    /*public void checkboostduration(Tank tank1, int licznik)
+    {
+
+        if(tank1.getspeed_boost())
+        {
+            
+      
+                licznik += 1;
+                if (licznik == 1000)
+                {
+                    tank1.setspeed_boost(false);
+                    licznik = 0;
+                }
+            
+        }
+
+     
+
+
+    }
+    */
+    
+    public long gettimepassed(){
+        return this.timepassed/1000;
+    }
 }
+
+

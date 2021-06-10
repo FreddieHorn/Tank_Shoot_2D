@@ -29,8 +29,11 @@ public class Kontrola extends JFrame {
     private Gameplay gra;
     private int licznik1 = 0;
     private int licznik2 = 0;
+    private int licznik3 = 0;
+    private int licznik4 = 0;
     private boolean zatrzask1 = false;
-    private boolean zatrzask2 = false;  
+    private boolean zatrzask2 = false;
+    private Boost boost;  
     public class Zadanie extends TimerTask{
         public void run(){
 
@@ -110,6 +113,36 @@ public class Kontrola extends JFrame {
             }
         }
         
+        boost.collisoncheck(tank1);
+        boost.collisoncheck(tank2);
+
+        ///gra.checkboostduration(tank1, licznik3);
+        //gra.checkboostduration(tank2, licznik4);
+        if(tank1.getspeed_boost())
+        {
+            
+      
+                licznik3 += 1;
+                if (licznik3 == 1000)
+                {
+                    tank1.setspeed_boost(false);
+                    licznik3 = 0;
+                }
+            
+        }
+
+        if(tank2.getspeed_boost())
+        {
+            
+      
+                licznik4 += 1;
+                if (licznik4 == 1000)
+                {
+                    tank2.setspeed_boost(false);
+                    licznik4 = 0;
+                }
+            
+        }
 
         pociski.emptyMissiles(mur, tank1, tank2, gra);
             
@@ -128,6 +161,7 @@ public class Kontrola extends JFrame {
         setVisible(true);
         createBufferStrategy(2);
         
+
         pocisk = new ImageIcon("obrazki/pocisk.png").getImage();
         klocek = new ImageIcon("obrazki/klocek.jpg").getImage();
         tlo = new ImageIcon("obrazki/tlo.jpg").getImage();
@@ -139,14 +173,15 @@ public class Kontrola extends JFrame {
         mur = new Klocki();
         tank1 = new Tank(400,550);
         tank2 = new Tank(200,550);
-        klawisze = new boolean[14];
         gra = new Gameplay();
+        klawisze = new boolean[14];
+        
         pociski = new Missiles();
-    
+        boost = new Boost(100, 50, 2);
     
         zegar = new Timer();
         zegar.scheduleAtFixedRate(new Zadanie(),0,10);
-
+        
         this.addKeyListener(new KeyListener(){
 
             public void keyPressed(KeyEvent e){
@@ -219,6 +254,10 @@ public class Kontrola extends JFrame {
         g2d.setFont(new Font("Arial", Font.BOLD, 10));
         g2d.drawString("Zdrowie gracza 1: " + String.valueOf(tank1.getHealth()), 670, 50);
         g2d.drawString("Zdrowie gracza 2: " + String.valueOf(tank2.getHealth()), 670, 80);
+        g2d.drawString("boost aktywny: " + boost.getactive(), 670, 150);
+        g2d.drawString("ulepszenie gracza 1: " + tank1.getspeed_boost(), 670, 160);
+        g2d.drawString("ulepszenie gracza 2: " + tank2.getspeed_boost(), 670, 180);
+        //g2d.drawString("Zdrowie gracza 2: " + String.(gra.gettimepassed(), 670, 80);
 
 
         //rysowanie mapy

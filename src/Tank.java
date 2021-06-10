@@ -11,6 +11,7 @@ public class Tank {
     private Gameplay gra;
     private int health;
     private int score;
+    private boolean shot_boost;
 
 
     public Tank(int given_x, int given_y)
@@ -20,12 +21,13 @@ public class Tank {
         this.kierunek = 2;
         this.health = 5;
         this.score = 0;
+        this.shot_boost = false;
     }
 
-    public void setHealth()
+    public void setHealth(int h)
     {
-        if(this.health>0&&this.health<=5)
-            this.health -= 1; 
+        if(this.health>0&&this.health<=5&&shot_boost==false)
+            this.health -= h; 
     }
 
     public void up_score(int h)
@@ -99,5 +101,7 @@ public class Tank {
     public int getX() {return x;}
     public int getY() {return y;}
     public int getkierunek() {return kierunek;}
+    public void setspeed_boost(boolean trufal) {this.shot_boost = trufal;}
+    public boolean getspeed_boost() {return shot_boost;}
 
 }
