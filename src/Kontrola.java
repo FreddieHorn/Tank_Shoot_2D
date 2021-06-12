@@ -59,9 +59,8 @@ public class Kontrola extends JFrame {
                     save.saveMissiles(pociski);
                     save.saveboost(boosty);
                     save.saveBricks(mur.getklocki_on());
-                    save.saveTankcoords(tank1.getX(), tank1.getY(), tank2.getX(), tank2.getY(), tank1.getkierunek(), tank2.getkierunek(), tank1.getHealth(), tank2.getHealth());
-                    save.saveTank1(tank1);
-                    save.saveTank2(tank2);
+                    save.saveTankcoords(tank1.getX(), tank1.getY(), tank2.getX(), tank2.getY(), tank1.getkierunek(), tank2.getkierunek());
+                    save.saveTankcoords2(tank1.getHealth(), tank2.getHealth());
                     licznik5 = 0;
                 }
 
@@ -76,8 +75,8 @@ public class Kontrola extends JFrame {
                 tank2.setY(load.loadtankcoords().get(3));
                 tank1.setkierunek(load.loadtankcoords().get(4));
                 tank2.setkierunek(load.loadtankcoords().get(5));
-                tank1.setHealthstronk(load.loadtankcoords().get(6));
-                tank2.setHealthstronk(load.loadtankcoords().get(7));
+                tank1.setHealthstronk(load.loadtankcoords2().get(0));
+                tank2.setHealthstronk(load.loadtankcoords2().get(1));
                 boosty.setBoosts(load.loadBoosts());
             }
             

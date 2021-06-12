@@ -46,6 +46,7 @@ public class Load implements Serializable{
             ObjectInputStream ois = new ObjectInputStream(fis);
             Vector<Integer> bricks_vector = new Vector<Integer>((List)ois.readObject());
             ois.close();
+            fis.close();
             return bricks_vector;
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -60,6 +61,7 @@ public class Load implements Serializable{
             ObjectInputStream ois = new ObjectInputStream(fis);
             Vector<Integer> tank_vector = new Vector<Integer>((List)ois.readObject());
             ois.close();
+            fis.close();
             return tank_vector;
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -76,6 +78,7 @@ public class Load implements Serializable{
             ObjectInputStream ois = new ObjectInputStream(fis);
             tank1 = (Tank) ois.readObject();
             ois.close();
+            fis.close();
             return tank1;
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -90,11 +93,28 @@ public class Load implements Serializable{
             ObjectInputStream ois = new ObjectInputStream(fis);
             tank2 = (Tank) ois.readObject();
             ois.close();
+            fis.close();
             return tank2;
         } catch (Exception ex) {
             ex.printStackTrace();
             return null;
         }
     }
+
+    public Vector<Integer> loadtankcoords2(){
+        try {
+           
+            FileInputStream fis = new FileInputStream("saved_tank_coords2.tmp");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            Vector<Integer> tank_vector1 = new Vector<Integer>((List)ois.readObject());
+            ois.close();
+            fis.close();
+            return tank_vector1;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
 }
 

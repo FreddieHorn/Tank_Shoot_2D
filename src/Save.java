@@ -15,6 +15,7 @@ public class Save implements Serializable{
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(helper);
             oos.close();
+            fos.close();
         }
         catch (Exception ex){
             ex.printStackTrace();
@@ -28,13 +29,14 @@ public class Save implements Serializable{
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(helper);
             oos.close();
+            fos.close();
         }
         catch (Exception ex){
             ex.printStackTrace();
         }
     }
 
-    public void saveTankcoords(int x, int y, int x1, int y1, int h1, int h2, int k1, int k2)
+    public void saveTankcoords(int x, int y, int x1, int y1, int h1, int h2)
     {
         try {
 
@@ -47,8 +49,6 @@ public class Save implements Serializable{
             vec.add(y);
             vec.add(x1);
             vec.add(y1);
-            vec.add(k1);
-            vec.add(k2);
             vec.add(h1);
             vec.add(h2);
 
@@ -56,18 +56,7 @@ public class Save implements Serializable{
             List<Integer> list = Collections.list(vec.elements());
             oos.writeObject(list);
             oos.close();
-        }
-        catch (Exception ex){
-            ex.printStackTrace();
-        }
-    }
-    public void saveTank1(Tank help){
-        try {
-            FileOutputStream fos = new FileOutputStream("saved_tank1.tmp");
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(help);
-            
-            oos.close();
+            fos.close();
         }
         catch (Exception ex){
             ex.printStackTrace();
@@ -75,18 +64,6 @@ public class Save implements Serializable{
     }
 
 
-    public void saveTank2(Tank help){
-        try {
-            FileOutputStream fos = new FileOutputStream("saved_tank2.tmp");
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(help);
-            
-            oos.close();
-        }
-        catch (Exception ex){
-            ex.printStackTrace();
-        }
-    }
 
     public void saveboost(Boosts boost){
         try {
@@ -96,10 +73,34 @@ public class Save implements Serializable{
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(helper);
             oos.close();
+            fos.close();
         }
         catch (Exception ex){
             ex.printStackTrace();
         }
     }
+    
 
+    public void saveTankcoords2(int x, int y)
+    {
+        try {
+
+            FileOutputStream fos = new FileOutputStream("saved_tank_coords2.tmp");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+
+            Vector<Integer> vec = new Vector<>();
+
+            vec.add(x);
+            vec.add(y);
+
+            
+            List<Integer> list = Collections.list(vec.elements());
+            oos.writeObject(list);
+            oos.close();
+            fos.close();
+        }
+        catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
 }
