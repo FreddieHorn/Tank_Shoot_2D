@@ -4,7 +4,7 @@ import java.util.Vector;
 public class Missiles implements Serializable{
     private Vector<Missile> missiles;
     public Missiles() {
-        this.missiles = new Vector<>();
+        this.missiles = new Vector<Missile>();
     }
     //setter pociskow
     public void setMissiles(Vector<Missile> missiles) {

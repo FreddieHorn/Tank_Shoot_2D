@@ -40,7 +40,9 @@ public class Klocki {
     public int[] getklockiY() {return klockiYPos;}
     public int[] getmocneklockiX() {return solidBricksXPos;}
     public int[] getmocneklockiY() {return solidBricksYPos;}
-	
+	public void setklockion(Vector<Integer> x) {
+        klocki_on = x;
+    }
     public boolean checkSolidCollision(int x, int y)
 	{
 		boolean collided = false;

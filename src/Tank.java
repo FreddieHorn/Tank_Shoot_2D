@@ -100,6 +100,13 @@ public class Tank {
     }
     public int getX() {return x;}
     public int getY() {return y;}
+    public void setX(int x1) {
+        this.x = x1;
+    }
+
+    public void setY(int y1) {
+        this.y = y1;
+    }
     public int getkierunek() {return kierunek;}
     public void setspeed_boost(boolean trufal) {this.shot_boost = trufal;}
     public boolean getspeed_boost() {return shot_boost;}

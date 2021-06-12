@@ -1,5 +1,8 @@
 
-public class Missile {
+import java.io.Serializable;
+
+
+public class Missile implements Serializable{
     private int x;
     private int y;
     private int kierunek;

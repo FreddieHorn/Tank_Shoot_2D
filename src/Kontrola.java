@@ -36,17 +36,43 @@ public class Kontrola extends JFrame {
     private int licznik2 = 0;
     private int licznik3 = 0;
     private int licznik4 = 0;
+    private int licznik5 = 0;
     private boolean zatrzask1 = false;
     private boolean zatrzask2 = false;
     private Boost boost;  
     private boolean koniec_gry = false;
     private boolean halt = false;
-    private boolean halt1 = false;
+    private Save save;
+    private Load load;
+
     public class Zadanie extends TimerTask{
         public void run(){
 
         if (halt == false)
         {
+
+            licznik5 += 1;
+                if (licznik5 == 2000)
+                {
+                    save.saveMissiles(pociski);
+                    save.saveBricks(mur.getklocki_on());
+                    save.saveTankcoords(tank1.getX(), tank1.getY(), tank2.getX(), tank2.getY());
+                    save.saveTank1(tank1);
+                    save.saveTank2(tank2);
+                    licznik5 = 0;
+                }
+
+
+            if(klawisze[12])
+            {
+                pociski.setMissiles(load.loadMissiles());
+                mur.setklockion(load.loadbricks());
+                tank1.setX(load.loadtankcoords().get(0));
+                tank1.setY(load.loadtankcoords().get(1));
+                tank2.setX(load.loadtankcoords().get(2)); 
+                tank2.setY(load.loadtankcoords().get(3));
+            }
+            
             if(klawisze[0]) 
             {
                 tank1.setkierunek(2);
@@ -160,6 +186,9 @@ public class Kontrola extends JFrame {
                 if(!koniec_gry)
                     repaint();
             }
+
+
+
         }
         }
     }
@@ -191,6 +220,8 @@ public class Kontrola extends JFrame {
         tank2 = new Tank(200,550);
         gra = new Gameplay();
         klawisze = new boolean[14];
+        save = new Save();
+        load = new Load();
         
         pociski = new Missiles();
         boost = new Boost(100, 50, 2);
@@ -227,7 +258,6 @@ public class Kontrola extends JFrame {
                         Kontrola okno = new Kontrola();
                         okno.repaint();
                         dispose();
-                    
                     break;
                     case KeyEvent.VK_P:   klawisze[11] = true;
                         if(koniec_gry == false)
@@ -236,6 +266,8 @@ public class Kontrola extends JFrame {
                             repaint();
                         }
                        
+                    break;
+                    case KeyEvent.VK_O: klawisze[12] = true;
                     break;
                 }
             }
@@ -253,7 +285,8 @@ public class Kontrola extends JFrame {
                     case KeyEvent.VK_SPACE:   klawisze[8] = false; break;
                     case KeyEvent.VK_M:   klawisze[9] = false; break;
                     case KeyEvent.VK_R:   klawisze[10] = false; break;
-                    case KeyEvent.VK_P:   klawisze[11] = false;
+                    case KeyEvent.VK_P:   klawisze[11] = false; break;
+                    case KeyEvent.VK_O: klawisze[12] = false; break;
                 }
             }
 
