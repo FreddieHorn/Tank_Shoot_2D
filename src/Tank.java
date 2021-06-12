@@ -44,6 +44,12 @@ public class Tank {
     {
         this.kierunek = x;
     }
+
+    public void setHealthstronk(int x)
+    {
+        this.health = x;
+    }
+
     public void ruchPrawo(int x_of_second_tank, int y_of_second_tank, Klocki given_mur, Gameplay given_gra)
     {
         this.mur = given_mur;

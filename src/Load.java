@@ -4,7 +4,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Vector;
 import java.io.Serializable;
-
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 public class Load implements Serializable{
     public Vector<Missile> loadMissiles(){
@@ -15,6 +16,7 @@ public class Load implements Serializable{
             Vector<Missile> missile_vector = new Vector<Missile>((List)ois.readObject());
             missiles_list.setMissiles(missile_vector);
             ois.close();
+            fis.close();
             return missile_vector;
         } catch (Exception ex) {
             ex.printStackTrace();

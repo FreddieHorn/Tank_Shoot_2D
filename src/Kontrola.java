@@ -51,12 +51,12 @@ public class Kontrola extends JFrame {
         if (halt == false)
         {
 
-            licznik5 += 1;
+                licznik5 += 1;
                 if (licznik5 == 2000)
                 {
                     save.saveMissiles(pociski);
                     save.saveBricks(mur.getklocki_on());
-                    save.saveTankcoords(tank1.getX(), tank1.getY(), tank2.getX(), tank2.getY());
+                    save.saveTankcoords(tank1.getX(), tank1.getY(), tank2.getX(), tank2.getY(), tank1.getkierunek(), tank2.getkierunek(), tank1.getHealth(), tank2.getHealth());
                     save.saveTank1(tank1);
                     save.saveTank2(tank2);
                     licznik5 = 0;
@@ -71,6 +71,10 @@ public class Kontrola extends JFrame {
                 tank1.setY(load.loadtankcoords().get(1));
                 tank2.setX(load.loadtankcoords().get(2)); 
                 tank2.setY(load.loadtankcoords().get(3));
+                tank1.setkierunek(load.loadtankcoords().get(4));
+                tank2.setkierunek(load.loadtankcoords().get(5));
+                tank1.setHealthstronk(load.loadtankcoords().get(6));
+                tank2.setHealthstronk(load.loadtankcoords().get(7));
             }
             
             if(klawisze[0]) 

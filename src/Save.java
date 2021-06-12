@@ -34,7 +34,7 @@ public class Save implements Serializable{
         }
     }
 
-    public void saveTankcoords(int x, int y, int x1, int y1)
+    public void saveTankcoords(int x, int y, int x1, int y1, int h1, int h2, int k1, int k2)
     {
         try {
 
@@ -47,10 +47,15 @@ public class Save implements Serializable{
             vec.add(y);
             vec.add(x1);
             vec.add(y1);
+            vec.add(k1);
+            vec.add(k2);
+            vec.add(h1);
+            vec.add(h2);
+
             
             List<Integer> list = Collections.list(vec.elements());
             oos.writeObject(list);
-            //oos.close();
+            oos.close();
         }
         catch (Exception ex){
             ex.printStackTrace();
@@ -62,7 +67,7 @@ public class Save implements Serializable{
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(help);
             
-            //oos.close();
+            oos.close();
         }
         catch (Exception ex){
             ex.printStackTrace();
