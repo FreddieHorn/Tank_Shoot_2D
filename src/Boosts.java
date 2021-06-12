@@ -3,7 +3,7 @@ import java.util.Vector;
 import java.util.Random;
 import java.awt.Rectangle;
 
-public class Boosts {
+public class Boosts implements Serializable{
     private Vector<Boost> boosts;
 
     public Boosts(){

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Vector;
 import java.io.Serializable;
 import java.nio.file.Files;
+
 import java.nio.file.Path;
 
 public class Load implements Serializable{
@@ -18,6 +19,21 @@ public class Load implements Serializable{
             ois.close();
             fis.close();
             return missile_vector;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+
+    public Vector<Boost> loadBoosts(){
+        try {
+            FileInputStream fis = new FileInputStream("saved_boosts.tmp");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            Vector<Boost> boost_vector = new Vector<Boost>((List)ois.readObject());
+            ois.close();
+            fis.close();
+            return boost_vector;
         } catch (Exception ex) {
             ex.printStackTrace();
             return null;

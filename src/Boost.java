@@ -1,8 +1,9 @@
 import java.awt.Rectangle;
+import java.io.Serializable;
 
 
 
-public class Boost {
+public class Boost implements Serializable{
     
     private int x;
     private int y;

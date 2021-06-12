@@ -88,4 +88,18 @@ public class Save implements Serializable{
         }
     }
 
+    public void saveboost(Boosts boost){
+        try {
+            //konieczne zamienianie wektora asteroid na listę pomocnicza
+            List<Boost> helper = Collections.list(boost.getBoosts().elements());
+            FileOutputStream fos = new FileOutputStream("saved_boosts.tmp");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(helper);
+            oos.close();
+        }
+        catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+
 }

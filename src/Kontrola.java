@@ -57,6 +57,7 @@ public class Kontrola extends JFrame {
                 if (licznik5 == 2000)
                 {
                     save.saveMissiles(pociski);
+                    save.saveboost(boosty);
                     save.saveBricks(mur.getklocki_on());
                     save.saveTankcoords(tank1.getX(), tank1.getY(), tank2.getX(), tank2.getY(), tank1.getkierunek(), tank2.getkierunek(), tank1.getHealth(), tank2.getHealth());
                     save.saveTank1(tank1);
@@ -77,6 +78,7 @@ public class Kontrola extends JFrame {
                 tank2.setkierunek(load.loadtankcoords().get(5));
                 tank1.setHealthstronk(load.loadtankcoords().get(6));
                 tank2.setHealthstronk(load.loadtankcoords().get(7));
+                boosty.setBoosts(load.loadBoosts());
             }
             
             if(klawisze[0]) 
@@ -184,10 +186,10 @@ public class Kontrola extends JFrame {
             }
 
             licznik6++;
-            if(licznik5==1500)
+            if(licznik6==1500)
             {
                 boosty.newboost(mur, 2);
-                licznik5=0;
+                licznik6=0;
             }
             pociski.emptyMissiles(mur, tank1, tank2, gra);
             boosty.emptyBoosts(tank1, tank2); ;

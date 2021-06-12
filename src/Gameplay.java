@@ -1,4 +1,7 @@
 import java.awt.Rectangle;
+import java.nio.file.Files;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
 public class Gameplay {
     private long timepassed;
 
@@ -36,29 +39,6 @@ public class Gameplay {
         }
         return collided;
         }
-    
-
-    /*public void checkboostduration(Tank tank1, int licznik)
-    {
-
-        if(tank1.getspeed_boost())
-        {
-            
-      
-                licznik += 1;
-                if (licznik == 1000)
-                {
-                    tank1.setspeed_boost(false);
-                    licznik = 0;
-                }
-            
-        }
-
-     
-
-
-    }
-    */
     
     public long gettimepassed(){
         return this.timepassed/1000;
