@@ -31,12 +31,14 @@ public class Kontrola extends JFrame {
     public Tank tank1;
     public Tank tank2;
     private Missiles pociski;
+    private Boosts boosty;
     private Gameplay gra;
     private int licznik1 = 0;
     private int licznik2 = 0;
     private int licznik3 = 0;
     private int licznik4 = 0;
     private int licznik5 = 0;
+    private int licznik6 = 0;
     private boolean zatrzask1 = false;
     private boolean zatrzask2 = false;
     private Boost boost;  
@@ -152,8 +154,6 @@ public class Kontrola extends JFrame {
                 }
             }
             
-            boost.collisoncheck(tank1);
-            boost.collisoncheck(tank2);
 
             ///gra.checkboostduration(tank1, licznik3);
             //gra.checkboostduration(tank2, licznik4);
@@ -183,7 +183,14 @@ public class Kontrola extends JFrame {
                 
             }
 
+            licznik6++;
+            if(licznik5==1500)
+            {
+                boosty.newboost(mur, 2);
+                licznik5=0;
+            }
             pociski.emptyMissiles(mur, tank1, tank2, gra);
+            boosty.emptyBoosts(tank1, tank2); ;
 
             if (!halt)
             {
@@ -228,7 +235,7 @@ public class Kontrola extends JFrame {
         load = new Load();
         
         pociski = new Missiles();
-        boost = new Boost(100, 50, 2);
+        boosty = new Boosts();
     
         zegar = new Timer();
         zegar.scheduleAtFixedRate(new Zadanie(),0,10);
@@ -323,7 +330,6 @@ public class Kontrola extends JFrame {
         g2d.setFont(new Font("Arial", Font.BOLD, 10));
         g2d.drawString("Zdrowie gracza 1: " + String.valueOf(tank1.getHealth()), 670, 50);
         g2d.drawString("Zdrowie gracza 2: " + String.valueOf(tank2.getHealth()), 670, 80);
-        g2d.drawString("boost aktywny: " + boost.getactive(), 670, 150);
         g2d.drawString("ulepszenie gracza 1: " + tank1.getspeed_boost(), 670, 160);
         g2d.drawString("ulepszenie gracza 2: " + tank2.getspeed_boost(), 670, 180);
         //g2d.drawString("Zdrowie gracza 2: " + String.(gra.gettimepassed(), 670, 80);
@@ -383,8 +389,8 @@ public class Kontrola extends JFrame {
         for (int i = 0; i < pociski.getMissiles().size(); i++)
             g2d.drawImage(pocisk, pociski.getMissiles().get(i).getX(),pociski.getMissiles().get(i).getY(),null);
         //rysowanie tarczy
-        if(boost.getactive())
-            g2d.drawImage(shield, boost.getX(), boost.getY(), null);
+        for (int i = 0; i < boosty.getBoosts().size(); i++)
+        g2d.drawImage(shield, boosty.getBoosts().get(i).getX(),boosty.getBoosts().get(i).getY(),null);
         g2d.setColor(Color.white);
 
         g2d.setColor(Color.RED);

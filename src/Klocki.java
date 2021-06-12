@@ -17,6 +17,7 @@ public class Klocki {
         450,450,450,450,450,500,500,500,500,500,500,550,550,
         550,550};
     
+    public int[][] mapa = new int[12][13];
     public static int solidBricksXPos[] = {150,350,150,500,450,300,600,400,350,200,0,200,500};
 	
     public static int solidBricksYPos[] = {0,0,50,100,150,200,200,250,300,350,400,400,450};
@@ -33,6 +34,7 @@ public class Klocki {
     {
         klocki_on.add(1);
     }
+    rysujmapke();
     }
 
     public Vector<Integer> getklocki_on() {return klocki_on;}
@@ -42,6 +44,23 @@ public class Klocki {
     public int[] getmocneklockiY() {return solidBricksYPos;}
 	public void setklockion(Vector<Integer> x) {
         klocki_on = x;
+    }
+    public void rysujmapke(){
+        int x;
+        int y;
+        for (int i=0; i < klockiXPos.length; i++)
+        {
+            x = klockiXPos[i]/50;
+            y = klockiYPos[i]/50;
+            mapa[y][x] = 1;
+        }
+        for (int i=0; i < solidBricksXPos.length; i++)
+        {
+            x = solidBricksXPos[i]/50;
+            y = solidBricksYPos[i]/50;
+            mapa[y][x] = 1;
+        }
+        //boosts.add(new Boost(x,y,id));
     }
     public boolean checkSolidCollision(int x, int y)
 	{
@@ -85,6 +104,7 @@ public class Klocki {
                 {
                     collided1 = true;
                     klocki_on.set(i, 0); 
+                    mapa[klockiYPos[i]/50][klockiXPos[i]/50] = 0;
                     break;
                 }
             }
