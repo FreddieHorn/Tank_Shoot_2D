@@ -5,7 +5,7 @@ import java.awt.Rectangle;
 
 public class Boosts implements Serializable{
     private Vector<Boost> boosts;
-
+    private Music muzyka = new Music();
     public Boosts(){
         this.boosts = new Vector<>();
     }
@@ -66,6 +66,7 @@ public class Boosts implements Serializable{
                     else if(boosts.get(i).getID()==1)
                         tank1.setfirerate_boost(true);
                     collided = true;
+                    muzyka.mPunkt(6);
                 }
             
             else if (new Rectangle(x, y, 50, 50).intersects(new Rectangle(tank2.getX(), tank2.getY(), 40, 40)))
@@ -75,6 +76,7 @@ public class Boosts implements Serializable{
                     else if(boosts.get(i).getID()==1)
                         tank2.setfirerate_boost(true);
                     collided = true;
+                    muzyka.mPunkt(6);
             }
         }
 
