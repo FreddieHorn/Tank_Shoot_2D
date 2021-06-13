@@ -45,6 +45,7 @@ public class Kontrola extends JFrame {
     private int licznik8 = 0;
     private boolean zatrzask1 = false;
     private boolean zatrzask2 = false; 
+    private boolean zatrzask3 = false; 
     private boolean koniec_gry = false;
     private boolean halt = false;
     private Save save;
@@ -66,10 +67,11 @@ public class Kontrola extends JFrame {
                     save.saveTankcoords(tank1.getX(), tank1.getY(), tank2.getX(), tank2.getY(), tank1.getkierunek(), tank2.getkierunek());
                     save.saveTankcoords2(tank1.getHealth(), tank2.getHealth());
                     licznik5 = 0;
+                    zatrzask3 = true;
                 }
 
 
-            if(klawisze[12])
+            if(klawisze[12] && zatrzask3 == true)
             {
                 pociski.setMissiles(load.loadMissiles());
                 mur.setklockion(load.loadbricks());
@@ -302,7 +304,7 @@ public class Kontrola extends JFrame {
         save = new Save();
         load = new Load();
         muzyka = new Music();
-        
+        muzyka.mPunkt(4);
         pociski = new Missiles();
         boosty = new Boosts();
     
@@ -402,13 +404,13 @@ public class Kontrola extends JFrame {
         g2d.drawString("gracz1: ", 665, 160);
         g2d.drawString("gracz2: ", 735, 160);
         if(tank1.getspeed_boost())
-            g2d.drawImage(shield, 675, 165,null);
+            g2d.drawImage(shield, 665, 165,null);
         else if(tank1.getfireupgrade())
-            g2d.drawImage(gun, 675, 215, null);
+            g2d.drawImage(gun, 665, 215, null);
         else if(tank2.getspeed_boost())
-            g2d.drawImage(shield, 740, 165,null);
+            g2d.drawImage(shield, 730, 165,null);
         else if(tank2.getfireupgrade())
-            g2d.drawImage(gun, 740, 215, null);
+            g2d.drawImage(gun, 730, 215, null);
 
 
         
@@ -489,12 +491,14 @@ public class Kontrola extends JFrame {
 
         if(tank1.getHealth() == 0)
         {
+            muzyka.mPunkt(5);
             g2d.drawString("Koniec gry. Wygrał gracz 2", 100, 160);
             //koniec_gry1 = true;
         }
         else if(tank2.getHealth()==0)
         {
-            g2d.drawString("Koniec gry. Wygrał gracz 2", 100, 160);
+            muzyka.mPunkt(5);
+            g2d.drawString("Koniec gry. Wygrał gracz 1", 100, 160);
             //koniec_gry1 = true;
         }
 
