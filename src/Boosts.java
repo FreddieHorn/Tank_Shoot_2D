@@ -57,36 +57,28 @@ public class Boosts implements Serializable{
         boolean collided = false;
         for(int i=0;i<boosts.size();i++)
         {
-            if(new Rectangle(x, y, 50, 50).intersects(new Rectangle(tank1.getX(), tank1.getY(), 40, 40)))
-            {
-<<<<<<< HEAD
+            
                 if(new Rectangle(boosts.get(i).getX(), boosts.get(i).getY(), 50, 50).intersects(new Rectangle(tank1.getX(), tank1.getY(), 40, 40)))
                 {
-                    collided = true;
+                    
                     if(boosts.get(i).getID()==0)
                         tank1.setspeed_boost(true);
                     else if(boosts.get(i).getID()==1)
                         tank1.setfirerate_boost(true);
-                }
-                else if (new Rectangle(boosts.get(i).getX(), boosts.get(i).getY(), 50, 50).intersects(new Rectangle(tank2.getX(), tank2.getY(), 40, 40)))
-                {
                     collided = true;
+                }
+            
+            else if (new Rectangle(boosts.get(i).getX(), boosts.get(i).getY(), 50, 50).intersects(new Rectangle(tank2.getX(), tank2.getY(), 40, 40)))
+            {
                     if(boosts.get(i).getID()==0)
                         tank2.setspeed_boost(true);
                     else if(boosts.get(i).getID()==1)
                         tank2.setfirerate_boost(true);
-                }
-=======
-                collided = true;
-                tank1.setspeed_boost(true);
-            }
-            else if (new Rectangle(x, y, 50, 50).intersects(new Rectangle(tank2.getX(), tank2.getY(), 40, 40)))
-            {
-                collided = true;
-                tank2.setspeed_boost(true);
->>>>>>> c9d794282d25e5c8db5bb6874c39ffae1713cfc1
+                    collided = true;
             }
         }
+
+        
         return collided;
     }
 
@@ -98,12 +90,8 @@ public class Boosts implements Serializable{
             int i=0;
             while(!end)
             {
-<<<<<<< HEAD
-                if(collisoncheck(tank1, tank2)==true)
-=======
 
                 if(collisoncheck(tank1, tank2, boosts.get(i).getX(), boosts.get(i).getY())==true)
->>>>>>> c9d794282d25e5c8db5bb6874c39ffae1713cfc1
                 {
                     boosts.remove(i);
                     i=0;
