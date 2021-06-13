@@ -391,17 +391,29 @@ public class Kontrola extends JFrame {
 
         //rysowanie HUDu
         g2d.setColor(Color.DARK_GRAY);
-        g2d.fillRect(660, 0, 140, 600);
+        g2d.fillRect(650, 0, 140, 600);
 
         g2d.setColor(Color.WHITE);
         g2d.setFont(new Font("Arial", Font.BOLD, 10));
-        g2d.drawString("Zdrowie gracza 1: " + String.valueOf(tank1.getHealth()), 670, 50);
-        g2d.drawString("Zdrowie gracza 2: " + String.valueOf(tank2.getHealth()), 670, 80);
-        g2d.drawString("ulepszenie gracza 1: " + tank1.getspeed_boost(), 670, 160);
-        g2d.drawString("ulepszenie gracza 2: " + tank2.getspeed_boost(), 670, 180);
-        g2d.drawString("Zatrzask 1: " + zatrzask1, 670, 200);
-        g2d.drawString("Zatrzask 2: " + zatrzask2, 670, 220);
-        g2d.drawString("FU2: " + tank2.getfireupgrade(), 670, 240);
+        g2d.drawString("Zdrowie gracza 1: " + String.valueOf(tank1.getHealth()), 665, 50);
+        g2d.drawString("Zdrowie gracza 2: " + String.valueOf(tank2.getHealth()), 665, 80);
+        g2d.drawString("gracz1: ", 665, 160);
+        g2d.drawString("gracz2: ", 735, 160);
+        if(tank1.getspeed_boost())
+            g2d.drawImage(shield, 675, 165,null);
+        else if(tank1.getfireupgrade())
+            g2d.drawImage(gun, 675, 215, null);
+        else if(tank2.getspeed_boost())
+            g2d.drawImage(shield, 740, 165,null);
+        else if(tank2.getfireupgrade())
+            g2d.drawImage(gun, 740, 215, null);
+
+
+        
+        g2d.setFont(new Font("Arial", Font.BOLD, 15));
+        g2d.drawString("R - restart", 670, 280);
+        g2d.drawString("P - pauza ", 670, 295);
+        g2d.drawString("O - wczytaj grę", 670, 310);
 
 
         //rysowanie mapy

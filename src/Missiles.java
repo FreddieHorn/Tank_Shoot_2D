@@ -36,7 +36,7 @@ public class Missiles implements Serializable{
                 kierunek=missiles.get(i).getkierunek();
                 switch(kierunek){
                     case 0: 
-                        if(missiles.get(i).getX()>=600 || mur.checkbulletCollision(missiles.get(i).getX(),missiles.get(i).getY())==true || 
+                        if(missiles.get(i).getX()>=650 || mur.checkbulletCollision(missiles.get(i).getX(),missiles.get(i).getY())==true || 
                         mur.checkSolidBulletCollision(missiles.get(i).getX(),missiles.get(i).getY())==true || gm.CheckbulletandtankCollision(missiles.get(i).getX(),missiles.get(i).getY(), 
                         tank1.getX(), tank1.getY(), tank2.getX(), tank2.getY(), missiles.get(i), tank1, tank2))
                         {
