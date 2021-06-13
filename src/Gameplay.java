@@ -2,9 +2,9 @@ import java.awt.Rectangle;
 
 public class Gameplay {
     private long timepassed;
-
+    private Music muzyka;
     public boolean CheckTankCollision(int x1, int y1, int x2, int y2){
-
+    muzyka = new Music();
     boolean collided = false;
 	
     if(new Rectangle(x1+5, y1+5, 40, 40).intersects(new Rectangle(x2+5, y2+5, 40, 40)))
@@ -23,6 +23,7 @@ public class Gameplay {
         {
             if(new Rectangle(x1, y1, 5, 5).intersects(new Rectangle(x2, y2, 40, 40)))
             {		
+                muzyka.mPunkt(2);
                 collided = true;
                 tank1.setHealth(1);
             }
@@ -31,6 +32,7 @@ public class Gameplay {
         {
             if(new Rectangle(x1, y1, 5, 5).intersects(new Rectangle(x3, y3, 40, 40)))
             {		
+                muzyka.mPunkt(2);
                 collided = true;
                 tank2.setHealth(1);
             }

@@ -24,7 +24,7 @@ public class Klocki {
 
     private Vector<Integer> klocki_on = new Vector<>();
 
-    
+    private Music muzyka = new Music();
     
 
 
@@ -102,6 +102,7 @@ public class Klocki {
             {
                 if(new Rectangle(x, y, 5, 5).intersects(new Rectangle(klockiXPos[i], klockiYPos[i], 50, 50)))
                 {
+                    muzyka.mPunkt(3);
                     collided1 = true;
                     klocki_on.set(i, 0); 
                     mapa[klockiYPos[i]/50][klockiXPos[i]/50] = 0;
@@ -119,6 +120,7 @@ public class Klocki {
 		{		
 			if(new Rectangle(x, y, 5, 5).intersects(new Rectangle(solidBricksXPos[i], solidBricksYPos[i], 50, 50)))
 			{		
+                muzyka.mPunkt(3);
 				collided = true;
 				break;
 			}

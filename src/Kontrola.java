@@ -49,6 +49,7 @@ public class Kontrola extends JFrame {
     private boolean halt = false;
     private Save save;
     private Load load;
+    private Music muzyka;
 
     public class Zadanie extends TimerTask{
         public void run(){
@@ -128,12 +129,14 @@ public class Kontrola extends JFrame {
 
             if (klawisze[8] && zatrzask1==false)
             {
+                muzyka.mPunkt(1);
                 pociski.newMissile(tank2.getX(),tank2.getY(),tank2.getkierunek(), 0);
                 zatrzask1 = true;
             }
 
             if (klawisze[9] && zatrzask2 == false)
             {
+                muzyka.mPunkt(1);
                 pociski.newMissile(tank1.getX(),tank1.getY(),tank1.getkierunek(), 1);
                 zatrzask2 = true;
             }
@@ -298,6 +301,7 @@ public class Kontrola extends JFrame {
         klawisze = new boolean[14];
         save = new Save();
         load = new Load();
+        muzyka = new Music();
         
         pociski = new Missiles();
         boosty = new Boosts();
