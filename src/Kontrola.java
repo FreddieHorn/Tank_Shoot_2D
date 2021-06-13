@@ -44,10 +44,8 @@ public class Kontrola extends JFrame {
     private int licznik7 = 0;
     private int licznik8 = 0;
     private boolean zatrzask1 = false;
-    private boolean zatrzask2 = false;
-    private Boost boost;  
+    private boolean zatrzask2 = false; 
     private boolean koniec_gry = false;
-    private boolean koniec_gry1 = false;
     private boolean halt = false;
     private Save save;
     private Load load;
@@ -190,7 +188,7 @@ public class Kontrola extends JFrame {
                     licznik3 += 1;
                     if (licznik3 == 1000)
                     {
-                        tank1.setspeed_boost(false);
+                        tank1.setshield_boost(false);
                         licznik3 = 0;
                     }
                 
@@ -203,7 +201,7 @@ public class Kontrola extends JFrame {
                     licznik4 += 1;
                     if (licznik4 == 1000)
                     {
-                        tank2.setspeed_boost(false);
+                        tank2.setshield_boost(false);
                         licznik4 = 0;
                     }
                 

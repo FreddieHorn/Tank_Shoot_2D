@@ -32,7 +32,7 @@ public class Boosts implements Serializable{
                 ilosc++;
             }
         }
-        Random rand = new Random(); //instance of random class
+        Random rand = new Random(); 
         int int_random = rand.nextInt(ilosc+1); 
 
         for (int i = 0; i < 12; i++)
@@ -62,7 +62,7 @@ public class Boosts implements Serializable{
                 {
                     
                     if(boosts.get(i).getID()==0)
-                        tank1.setspeed_boost(true);
+                        tank1.setshield_boost(true);
                     else if(boosts.get(i).getID()==1)
                         tank1.setfirerate_boost(true);
                     collided = true;
@@ -71,7 +71,7 @@ public class Boosts implements Serializable{
             else if (new Rectangle(x, y, 50, 50).intersects(new Rectangle(tank2.getX(), tank2.getY(), 40, 40)))
             {
                     if(boosts.get(i).getID()==0)
-                        tank2.setspeed_boost(true);
+                        tank2.setshield_boost(true);
                     else if(boosts.get(i).getID()==1)
                         tank2.setfirerate_boost(true);
                     collided = true;

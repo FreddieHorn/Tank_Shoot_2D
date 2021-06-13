@@ -1,7 +1,5 @@
 import java.awt.Rectangle;
-import java.nio.file.Files;
-import java.nio.file.FileSystems;
-import java.nio.file.Path;
+
 public class Gameplay {
     private long timepassed;
 

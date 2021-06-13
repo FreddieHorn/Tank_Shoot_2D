@@ -10,7 +10,6 @@ public class Tank {
     private Klocki mur;
     private Gameplay gra;
     private int health;
-    private int score;
     private boolean shot_boost;
     private boolean fire_rate_up;
 
@@ -21,7 +20,6 @@ public class Tank {
         this.y = given_y;
         this.kierunek = 2;
         this.health = 5;
-        this.score = 0;
         this.shot_boost = false;
         this.fire_rate_up = false;
     }
@@ -30,11 +28,6 @@ public class Tank {
     {
         if(this.health>0&&this.health<=5&&shot_boost==false)
             this.health -= h; 
-    }
-
-    public void up_score(int h)
-    {
-        this.score+=1; 
     }
 
     public int getHealth()
@@ -116,7 +109,7 @@ public class Tank {
         this.y = y1;
     }
     public int getkierunek() {return kierunek;}
-    public void setspeed_boost(boolean trufal) {this.shot_boost = trufal;}
+    public void setshield_boost(boolean trufal) {this.shot_boost = trufal;}
     public void setfirerate_boost(boolean trufal) {this.fire_rate_up = trufal;}
     public boolean getspeed_boost() {return shot_boost;}
     public boolean getfireupgrade() {return fire_rate_up;}
