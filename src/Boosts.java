@@ -58,7 +58,7 @@ public class Boosts implements Serializable{
         for(int i=0;i<boosts.size();i++)
         {
             
-                if(new Rectangle(boosts.get(i).getX(), boosts.get(i).getY(), 50, 50).intersects(new Rectangle(tank1.getX(), tank1.getY(), 40, 40)))
+                if(new Rectangle(x, y, 50, 50).intersects(new Rectangle(tank1.getX(), tank1.getY(), 40, 40)))
                 {
                     
                     if(boosts.get(i).getID()==0)
@@ -68,7 +68,7 @@ public class Boosts implements Serializable{
                     collided = true;
                 }
             
-            else if (new Rectangle(boosts.get(i).getX(), boosts.get(i).getY(), 50, 50).intersects(new Rectangle(tank2.getX(), tank2.getY(), 40, 40)))
+            else if (new Rectangle(x, y, 50, 50).intersects(new Rectangle(tank2.getX(), tank2.getY(), 40, 40)))
             {
                     if(boosts.get(i).getID()==0)
                         tank2.setspeed_boost(true);

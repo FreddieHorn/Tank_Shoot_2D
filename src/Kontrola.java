@@ -47,6 +47,7 @@ public class Kontrola extends JFrame {
     private boolean zatrzask2 = false;
     private Boost boost;  
     private boolean koniec_gry = false;
+    private boolean koniec_gry1 = false;
     private boolean halt = false;
     private Save save;
     private Load load;
@@ -246,11 +247,22 @@ public class Kontrola extends JFrame {
             pociski.emptyMissiles(mur, tank1, tank2, gra);
             boosty.emptyBoosts(tank1, tank2); ;
 
+
+            
+
+
             if (!halt)
             {
                 if(!koniec_gry)
                     repaint();
             }
+
+            if(tank1.getHealth()==0 || tank2.getHealth() ==0)
+            {
+                koniec_gry=true;
+            }
+            else
+                koniec_gry=false;
 
 
 
@@ -464,12 +476,12 @@ public class Kontrola extends JFrame {
         if(tank1.getHealth() == 0)
         {
             g2d.drawString("Koniec gry. Wygrał gracz 2", 100, 160);
-            koniec_gry = true;
+            //koniec_gry1 = true;
         }
         else if(tank2.getHealth()==0)
         {
             g2d.drawString("Koniec gry. Wygrał gracz 2", 100, 160);
-            koniec_gry = true;
+            //koniec_gry1 = true;
         }
 
         if(halt)
