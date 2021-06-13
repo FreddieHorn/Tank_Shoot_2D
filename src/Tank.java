@@ -12,6 +12,7 @@ public class Tank {
     private int health;
     private int score;
     private boolean shot_boost;
+    private boolean fire_rate_up;
 
 
     public Tank(int given_x, int given_y)
@@ -22,6 +23,7 @@ public class Tank {
         this.health = 5;
         this.score = 0;
         this.shot_boost = false;
+        this.fire_rate_up = false;
     }
 
     public void setHealth(int h)
@@ -115,6 +117,8 @@ public class Tank {
     }
     public int getkierunek() {return kierunek;}
     public void setspeed_boost(boolean trufal) {this.shot_boost = trufal;}
+    public void setfirerate_boost(boolean trufal) {this.fire_rate_up = trufal;}
     public boolean getspeed_boost() {return shot_boost;}
+    public boolean getfireupgrade() {return fire_rate_up;}
 
 }

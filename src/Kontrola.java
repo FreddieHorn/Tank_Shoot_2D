@@ -8,6 +8,7 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.Random;
 
 
 public class Kontrola extends JFrame {
@@ -25,6 +26,7 @@ public class Kontrola extends JFrame {
     private Image tank2_left;
     private Image tank2_right;
     private Image shield;
+    private Image gun;
     public Klocki mur;
     private Timer zegar; 
     private boolean klawisze[];
@@ -39,6 +41,8 @@ public class Kontrola extends JFrame {
     private int licznik4 = 0;
     private int licznik5 = 0;
     private int licznik6 = 0;
+    private int licznik7 = 0;
+    private int licznik8 = 0;
     private boolean zatrzask1 = false;
     private boolean zatrzask2 = false;
     private Boost boost;  
@@ -138,26 +142,46 @@ public class Kontrola extends JFrame {
             if (zatrzask2 == true)
             {
                 licznik2 += 1;
-                if (licznik2 == 50)
+                if(tank1.getfireupgrade())
                 {
-                    zatrzask2 = false;
-                    licznik2 = 0;
+                    if (licznik2 == 25)
+                    {
+                        zatrzask2 = false;
+                        licznik2 = 0;
+                    } 
+                }
+                else
+                {
+                    if (licznik2 == 50)
+                    {
+                        zatrzask2 = false;
+                        licznik2 = 0;
+                    }
                 }
             }
 
             if (zatrzask1 == true)
             {
                 licznik1 += 1;
-                if (licznik1 == 50)
+                if(tank2.getfireupgrade())
                 {
-                    zatrzask1 = false;
-                    licznik1 = 0;
+                    if (licznik1 == 25)
+                    {
+                        zatrzask1 = false;
+                        licznik1 = 0;
+                    } 
+                }
+                else
+                {
+                    if (licznik1 == 50)
+                    {
+                        zatrzask1 = false;
+                        licznik1 = 0;
+                    }
                 }
             }
             
 
-            ///gra.checkboostduration(tank1, licznik3);
-            //gra.checkboostduration(tank2, licznik4);
             if(tank1.getspeed_boost())
             {
                 
@@ -184,12 +208,41 @@ public class Kontrola extends JFrame {
                 
             }
 
+            if(tank1.getfireupgrade())
+            {
+                
+        
+                    licznik7 += 1;
+                    if (licznik7 == 1000)
+                    {
+                        tank1.setfirerate_boost(false);
+                        licznik7 = 0;
+                    }
+                
+            }
+
+            if(tank2.getfireupgrade())
+            {
+                
+        
+                    licznik8 += 1;
+                    if (licznik8 == 1000)
+                    {
+                        tank2.setfirerate_boost(false);
+                        licznik8 = 0;
+                    }
+                
+            }
+
             licznik6++;
             if(licznik6==1500)
             {
-                boosty.newboost(mur, 2);
-                licznik6=0;
+            Random rand = new Random(); //instance of random class
+            int int_random = rand.nextInt(2);
+            boosty.newboost(mur, int_random);
+            licznik6=0;
             }
+
             pociski.emptyMissiles(mur, tank1, tank2, gra);
             boosty.emptyBoosts(tank1, tank2); ;
 
@@ -227,6 +280,7 @@ public class Kontrola extends JFrame {
         tank2_left = new ImageIcon("obrazki/tank2_left.png").getImage();
         tank2_right = new ImageIcon("obrazki/tank2_right.png").getImage();
         shield = new ImageIcon("obrazki/shield.jpg").getImage();
+        gun = new ImageIcon("obrazki/gun.jpg").getImage();
         mur = new Klocki();
         tank1 = new Tank(400,550);
         tank2 = new Tank(200,550);
@@ -333,7 +387,9 @@ public class Kontrola extends JFrame {
         g2d.drawString("Zdrowie gracza 2: " + String.valueOf(tank2.getHealth()), 670, 80);
         g2d.drawString("ulepszenie gracza 1: " + tank1.getspeed_boost(), 670, 160);
         g2d.drawString("ulepszenie gracza 2: " + tank2.getspeed_boost(), 670, 180);
-        //g2d.drawString("Zdrowie gracza 2: " + String.(gra.gettimepassed(), 670, 80);
+        g2d.drawString("Zatrzask 1: " + zatrzask1, 670, 200);
+        g2d.drawString("Zatrzask 2: " + zatrzask2, 670, 220);
+        g2d.drawString("FU2: " + tank2.getfireupgrade(), 670, 240);
 
 
         //rysowanie mapy
@@ -391,7 +447,15 @@ public class Kontrola extends JFrame {
             g2d.drawImage(pocisk, pociski.getMissiles().get(i).getX(),pociski.getMissiles().get(i).getY(),null);
         //rysowanie tarczy
         for (int i = 0; i < boosty.getBoosts().size(); i++)
-        g2d.drawImage(shield, boosty.getBoosts().get(i).getX(),boosty.getBoosts().get(i).getY(),null);
+        {
+        if(boosty.getBoosts().get(i).getID()==0)
+            g2d.drawImage(shield, boosty.getBoosts().get(i).getX(),boosty.getBoosts().get(i).getY(),null);
+        else if(boosty.getBoosts().get(i).getID()==1)
+            g2d.drawImage(gun, boosty.getBoosts().get(i).getX(),boosty.getBoosts().get(i).getY(),null);
+            
+
+
+        }
         g2d.setColor(Color.white);
 
         g2d.setColor(Color.RED);
