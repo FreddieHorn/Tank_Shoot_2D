@@ -54,7 +54,7 @@ public class Kontrola extends JFrame {
 
     public class Zadanie extends TimerTask{
         public void run(){
-
+        //obsługa wciśniętych przycisków, implementacja timerów i wykonywanie odpowiednich funkcji
         if (halt == false)
         {
 
@@ -436,7 +436,7 @@ public class Kontrola extends JFrame {
             
         }
 
-        //rysowanie statku
+        //rysowanie czołgów
         
         if(tank1.getkierunek()==0)
         {

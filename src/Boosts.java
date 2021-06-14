@@ -17,9 +17,8 @@ public class Boosts implements Serializable{
     public Vector<Boost> getBoosts(){
         return this.boosts;
     }
-
+    //losowanie pozycji na mapie w której ma się pojawić wzmocnienie
     public void newboost(Klocki mur, int id){
-        //tutaj damy losowanie na podstawie mapy którą zrobimy. 
         int x = 0;
         int y = 0;
         int ilosc = 0;
@@ -52,7 +51,7 @@ public class Boosts implements Serializable{
         }
         boosts.add(new Boost(x,y,id));
     }
-
+    //sprawdzanie kolizji czołgu ze wzmocnieniem oraz aktywowanie danego wzmocnienia dla czołgu który je zebrał
     public boolean collisoncheck(Tank tank1, Tank tank2, int x, int y){
         boolean collided = false;
         for(int i=0;i<boosts.size();i++)
@@ -83,7 +82,7 @@ public class Boosts implements Serializable{
         
         return collided;
     }
-
+    //przeszukiwanie i aktywowanie za pomocą collisoncheck wzmocnień oraz ich usuwanie
     public void emptyBoosts(Tank tank1, Tank tank2){
         if(!boosts.isEmpty())
         {

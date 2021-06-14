@@ -6,7 +6,7 @@ public class Klocki {
 
 
 
-
+    //pozycje klocków na mapie
     public static int klockiXPos[] = {50,350,450,550,50,300,350,450,550,150,150,450,550,
         250,50,100,150,550,250,350,450,550,50,250,350,550,
         50,150,250,300,350,550,50,150,250,350,450,550,50,
@@ -45,6 +45,7 @@ public class Klocki {
 	public void setklockion(Vector<Integer> x) {
         klocki_on = x;
     }
+    //rysowanie pomocniczej mapy służącej do ustawiania wzmocnień
     public void rysujmapke(){
         int x;
         int y;
@@ -62,6 +63,8 @@ public class Klocki {
         }
         //boosts.add(new Boost(x,y,id));
     }
+
+    //sprawdzenie kolizji czołgu z niezniszczalnymi klockami
     public boolean checkSolidCollision(int x, int y)
 	{
 		boolean collided = false;
@@ -76,6 +79,7 @@ public class Klocki {
 		return collided;
 	}
 
+    //sprawdzenie kolizji czołgu z blokami zniszczalnymi
     public boolean checkCollision(int x, int y)
 	{
 		boolean collided1 = false;
@@ -93,6 +97,7 @@ public class Klocki {
 		return collided1;
 	}
 
+    //sprawdzanie kolizji pocisku ze zniszczalnymi klockami i ich usuwanie
     public boolean checkbulletCollision(int x, int y)
 	{
 		boolean collided1 = false;
@@ -113,6 +118,7 @@ public class Klocki {
 		return collided1;
 	}
 
+    //sprawdzanie kolizji pocisku z niezniszczalnymi klockami
     public boolean checkSolidBulletCollision(int x, int y)
 	{
 		boolean collided = false;

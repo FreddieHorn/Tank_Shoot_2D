@@ -3,6 +3,8 @@ import java.awt.Rectangle;
 public class Gameplay {
     private long timepassed;
     private Music muzyka;
+
+    //sprawdzanie zderzenia się dwóch czołgów
     public boolean CheckTankCollision(int x1, int y1, int x2, int y2){
     muzyka = new Music();
     boolean collided = false;
@@ -15,7 +17,7 @@ public class Gameplay {
 	return collided;
 	}
 
-
+    // sprawdzenie kolizji pocisku oraz czołgu, gdy spełnione to odejmujemy życie trafionemu czołgowi
     public boolean CheckbulletandtankCollision(int x1, int y1, int x2, int y2, int x3, int y3, Missile missile, Tank tank1, Tank tank2){
 
         boolean collided = false;

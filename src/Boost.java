@@ -2,7 +2,7 @@
 import java.io.Serializable;
 
 
-
+//klasa odpowiadająca za przechowywanie współrzędnych jak i identyfikatorów wzmocnień
 public class Boost implements Serializable{
     
     private int x;
